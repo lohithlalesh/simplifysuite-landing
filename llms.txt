@@ -1,0 +1,61 @@
+# Simplify Suite
+
+> Simplify Suite (simplifysuite.io) is an all-in-one business management platform / business operating system for small teams of 1-25 people: SMBs, agencies and startups. It replaces 5-10 separate SaaS subscriptions (project management, scheduling, expenses, documents, CRM, payroll, recruiting, sales enablement) with one workspace, saving up to 80% on software costs.
+
+Note: Simplify Suite (simplifysuite.io) is a business management platform and is not related to Tricerat's "Simplify Suite" printing/profile software.
+
+## Four pillars
+
+### Finance
+- Budget: scenario planning, transaction ledger, multi-currency, Confidence Forecasting (probability-scored cash flow projections at 100/60/30%), runway projection
+- Cash Flow: burn rate (daily/weekly/monthly), income by category, top clients by revenue
+- Invoicing: invoices, quotes (convert to invoices), credit notes, aging reports, tax summary
+- Banking: live bank feeds via Ponto Connect (open banking), automatic transaction import
+
+### People
+- Team Planning: full-year planning grid (holidays, sick days, deadlines, locked weeks)
+- Salary: payroll overview, salary records, net advantages, deal-linked commissions
+- Performance: company/team/individual goals, check-ins, structured review cycles, role profiles
+- Recruitr: full applicant tracking system (clients, jobs, candidates, applications) with a public career page
+
+### Sales
+- CRM: contacts, companies, kanban deal pipeline, weighted pipeline value, stale-deal alerts, follow-ups
+- Sales Packs: branded, trackable sales presentations shared with prospects
+- Products: catalog with pricing and volume discount tiers
+
+### Workspace
+- Projects: health tracking (on track / at risk / off track), budgets, team allocation
+- Ticketing: unified ticket board across all projects with priorities and status pipeline
+- Documents: templates, version control, internal/confidential visibility
+- Meetings: auto-summarized meeting notes plus a Calendly-style public booking page with calendar sync
+
+## AI features
+- AI daily briefings on the CRM and Projects dashboards ("Today's Plan") surface the highest-priority deals, follow-ups and tickets from live workspace data
+- Cross-module activity feed (sales, people, finance, workspace events)
+- Global workspace search across contacts, deals, projects, documents, tickets and employees
+- Workspace AI chat (coming soon)
+
+## Integrations
+- Ponto Connect (open banking, EU)
+- Google Calendar
+- Google Drive
+
+## Pricing (USD, billed annually)
+- Founder's Package: $480/year (about $40/month), up to 3 people
+- Startup Package: $1,400/year (about $117/month), up to 15 people, then $19/extra user/month
+- Growth Package: $2,316/year (about $193/month), up to 25 people, then $23/extra user/month
+- Every plan starts with a 7-day free trial, no credit card required
+
+## Key links
+- Homepage: https://simplifysuite.io/
+- Live demo workspace: https://demo.simplifysuite.io/
+- Book a demo: https://meet.simplifysuite.io/
+- Features: https://simplifysuite.io/features/cashflow, /features/budget, /features/planning, /features/tickets, /features/meetings, /features/documents, /features/performance-management, /features/expense-notes, /features/sales-packs
+- Comparisons: https://simplifysuite.io/comparisons/plane, /comparisons/odoo, /comparisons/rippling, /comparisons/monday
+- Pricing calculator: https://simplifysuite.io/comparisons/pricing
+
+## FAQ
+- Does Simplify do payroll? Yes: payroll overview, salary records, net advantages and deal-linked commissions.
+- Does Simplify have an ATS? Yes: Recruitr includes clients, jobs, candidates, application pipelines and a public career page.
+- Does Simplify connect to my bank? Yes, via Ponto Connect open banking; transactions sync into the budget ledger.
+- Who is Simplify for? Teams of 1-25: SMBs, agencies and startups.
