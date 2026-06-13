@@ -509,6 +509,13 @@ html.dark header.site.scrolled .nav{box-shadow:0 12px 34px -14px rgba(0,0,0,.7)}
 }
 html.dark .glass{box-shadow:0 12px 38px -16px rgba(0,0,0,.62)}
 
+
+/* ===== anime.js layer ===== */
+.hsketch{display:block;width:min(300px,78%);height:auto;margin:16px 0 4px;overflow:visible}
+.hsketch path{stroke:var(--primary);fill:none}
+@media(max-width:980px){.hsketch{margin:16px auto 4px}}
+.panel .ptext,.panel .pframe{transition:none}
+
 </style>
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 </head>
@@ -543,6 +550,7 @@ html.dark .glass{box-shadow:0 12px 38px -16px rgba(0,0,0,.62)}
   <div class="hero-left">
   <span class="eyebrow"><i class="ti ti-sparkles"></i> New: AI daily briefings for sales &amp; projects</span>
   <h1>One platform to run your <span class="hl">entire business</span></h1>
+<svg class="hsketch" viewBox="0 0 300 18" aria-hidden="true"><path d="M4 12 C58 4 104 16 156 9 C208 2 250 15 296 8" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>
   <p class="sub">Finance, people, sales and projects, together in one calm workspace. Simplify replaces 5-10 SaaS subscriptions for teams of 1-25, and costs up to 80% less.</p>
   <div class="hero-cta">
    <a class="btn btn-primary btn-lg" href="https://meet.simplifysuite.io">Book a demo</a>
@@ -1036,7 +1044,7 @@ navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
 }));
 
 const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), {threshold:.01, rootMargin:'0px 0px 15% 0px'});
-document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+void 0;/*anime*/
 
 const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
 if (reduceMotion) document.querySelectorAll('video[autoplay]').forEach(v => { v.removeAttribute('autoplay'); v.pause(); });
@@ -1075,7 +1083,7 @@ document.querySelectorAll('.bub').forEach(b => b.addEventListener('click', () =>
 }));
 
 const pio = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('vis'); pio.unobserve(e.target); } }), {threshold:.05, rootMargin:'0px 0px 12% 0px'});
-document.querySelectorAll('.panel').forEach(p => pio.observe(p));
+void 0;/*anime*/
 
 const ig = document.getElementById('infog');
 if (ig) {
@@ -1195,44 +1203,7 @@ if (!reduceMotion) {
   const step = now => { const p = Math.min((now - t0) / 900, 1); el.textContent = Math.round(end * (1 - Math.pow(1 - p, 3))); if (p < 1) requestAnimationFrame(step); };
   requestAnimationFrame(step);
  }), {threshold:.15, rootMargin:'0px 0px 10% 0px'});
- counters.forEach(c => cio.observe(c));
-}
-</script>
-<script type="module">
-if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
- try {
-  const { animate, inView, stagger } = await import('https://cdn.jsdelivr.net/npm/motion@latest/+esm');
-
-  const h1 = document.querySelector('.hero h1');
-  if (h1) {
-   const wrapWords = node => {
-    [...node.childNodes].forEach(n => {
-     if (n.nodeType === 3) {
-      const frag = document.createDocumentFragment();
-      n.textContent.split(/(\s+)/).forEach(t => {
-       if (t.trim()) { const s = document.createElement('span'); s.className = 'hwrd'; s.style.display = 'inline-block'; s.textContent = t; frag.appendChild(s); }
-       else frag.appendChild(document.createTextNode(t));
-      });
-      n.replaceWith(frag);
-     } else if (n.nodeType === 1) {
-      if (n.classList.contains('hl')) { n.classList.add('hwrd'); n.style.display = 'inline-block'; }
-      else wrapWords(n);
-     }
-    });
-   };
-   wrapWords(h1);
-   animate('.hero .hwrd', { opacity: [0, 1], transform: ['translateY(14px)', 'translateY(0px)'] }, { delay: stagger(0.025), duration: 0.35, easing: [0.2, 0.7, 0.2, 1] });
-  }
-
-  const stageEl = document.getElementById('stage');
-  if (stageEl) animate(stageEl, { opacity: [0, 1], transform: ['translateY(56px)', 'translateY(0px)'] }, { duration: 0.9, easing: [0.22, 1.2, 0.36, 1], delay: 0.35 });
-
-  document.querySelectorAll('.chip').forEach((c, i) => animate(c, { opacity: [0, 1] }, { duration: 0.45, delay: 0.9 + i * 0.18 }));
-
-  document.querySelectorAll('#replace .swap').forEach((el, i) => {
-   inView(el, () => { setTimeout(() => { const s = el.querySelector('s'); if (s) s.classList.add('done'); }, (i % 6) * 120); }, { amount: 0.4 });
-  });
- } catch (e) { /* Motion CDN unavailable: page stays fully functional */ }
+ void 0;/*anime*/
 }
 </script>
 <script>
@@ -1324,6 +1295,49 @@ if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
  setTimeout(fix,1400);
  document.addEventListener("visibilitychange",function(){if(!document.hidden)setTimeout(fix,150);});
  addEventListener("load",function(){setTimeout(fix,1600);});
+})();
+</script>
+<script src="https://cdn.jsdelivr.net/npm/animejs@3.2.2/lib/anime.min.js"></script>
+<script>
+(function(){
+ var reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
+ var A=window.anime;
+ function showAll(){
+  document.querySelectorAll(".reveal").forEach(function(e){e.style.opacity="1";e.style.transform="none";e.classList.add("in");});
+  document.querySelectorAll(".panel").forEach(function(p){p.classList.add("vis");});
+  document.querySelectorAll(".swap s").forEach(function(s){s.classList.add("done");});
+  document.querySelectorAll("[data-count]").forEach(function(c){c.textContent=c.getAttribute("data-count");});
+  var hp=document.querySelector(".hsketch path"); if(hp)hp.style.strokeDashoffset="0";
+ }
+ if(reduce||!A){showAll();return;}
+ var heroEls=[].slice.call(document.querySelectorAll(".hero-left > *:not(.hsketch)")).concat([].slice.call(document.querySelectorAll(".hero-right .persp")));
+ heroEls.forEach(function(e){e.style.opacity=0;});
+ A({targets:heroEls,translateY:[26,0],opacity:[0,1],easing:"easeOutElastic(1,.75)",duration:1200,delay:A.stagger(85,{start:120})});
+ var hp=document.querySelector(".hsketch path");
+ if(hp){var len=hp.getTotalLength();hp.style.strokeDasharray=len;hp.style.strokeDashoffset=len;
+  A({targets:hp,strokeDashoffset:[len,0],easing:"easeInOutSine",duration:850,delay:650});}
+ var rIO=new IntersectionObserver(function(es){es.forEach(function(en){
+  if(!en.isIntersecting)return;rIO.unobserve(en.target);var el=en.target;
+  var sibs=[].slice.call(el.parentNode.children).filter(function(c){return c.classList&&c.classList.contains("reveal");});
+  var idx=sibs.indexOf(el);if(idx<0)idx=0;
+  A({targets:el,translateY:[22,0],opacity:[0,1],easing:"easeOutElastic(1,.8)",duration:1050,delay:idx*70});
+ });},{threshold:.12,rootMargin:"0px 0px -7% 0px"});
+ document.querySelectorAll(".reveal").forEach(function(el){if(el.closest(".hero"))return;rIO.observe(el);});
+ var pIO=new IntersectionObserver(function(es){es.forEach(function(en){
+  if(!en.isIntersecting)return;pIO.unobserve(en.target);var p=en.target,alt=p.classList.contains("alt");
+  var tx=p.querySelector(".ptext"),fr=p.querySelector(".pframe");
+  if(tx)A({targets:tx,translateX:[alt?22:-22,0],opacity:[0,1],easing:"easeOutElastic(1,.85)",duration:1050});
+  if(fr)A({targets:fr,translateX:[alt?-22:22,0],opacity:[0,1],easing:"easeOutElastic(1,.85)",duration:1050,delay:80});
+ });},{threshold:.1,rootMargin:"0px 0px -5% 0px"});
+ document.querySelectorAll(".panel").forEach(function(p){pIO.observe(p);});
+ var sg=document.querySelector(".swap-grid");
+ if(sg){var sIO=new IntersectionObserver(function(es){es.forEach(function(en){if(!en.isIntersecting)return;sIO.disconnect();
+   [].slice.call(sg.querySelectorAll(".swap s")).forEach(function(s,i){setTimeout(function(){s.classList.add("done");},i*85);});});},{threshold:.2});sIO.observe(sg);}
+ document.querySelectorAll("[data-count]").forEach(function(el){
+  var end=parseFloat(el.getAttribute("data-count"))||0;
+  var cIO=new IntersectionObserver(function(es){es.forEach(function(en){if(!en.isIntersecting)return;cIO.disconnect();
+   var o={v:0};A({targets:o,v:end,round:1,easing:"easeOutExpo",duration:1700,update:function(){el.textContent=o.v;}});});},{threshold:.5});cIO.observe(el);
+ });
 })();
 </script>
 </body>
