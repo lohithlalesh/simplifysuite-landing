@@ -516,6 +516,32 @@ html.dark .glass{box-shadow:0 12px 38px -16px rgba(0,0,0,.62)}
 @media(max-width:980px){.hsketch{margin:16px auto 4px}}
 .panel .ptext,.panel .pframe{transition:none}
 
+
+/* ===== consolidation flow (reimagined stack) ===== */
+.consol{margin-top:4px}
+.consol-lead{font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--primary);margin-bottom:34px}
+.consol-flow{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:20px;align-items:center}
+.cnode{display:flex;flex-direction:column;align-items:center;text-align:center;gap:16px}
+.cn-logos{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;max-width:280px}
+.cn-logos img{width:42px;height:42px;object-fit:contain;border-radius:11px;background:var(--wg-bg);border:1px solid var(--wg-border);padding:8px}
+html.dark .cn-logos img{background:#ece8df}
+.cn-badge{display:flex;flex-direction:column;align-items:center;line-height:1}
+.cn-num{font-family:'Plus Jakarta Sans',sans-serif;font-size:clamp(40px,5vw,60px);font-weight:800;background:linear-gradient(125deg,var(--primary),var(--teal));-webkit-background-clip:text;background-clip:text;color:transparent;line-height:1}
+.cn-num.big{font-size:clamp(64px,9vw,104px)}
+.cn-cap{font-size:13px;color:var(--muted);font-weight:600;margin-top:8px;max-width:170px}
+.cn-pills{display:flex;flex-direction:column;gap:9px}
+.cpill{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:600;color:#fff;background:var(--c);border-radius:99px;padding:9px 20px;box-shadow:0 8px 22px -12px var(--c)}
+html.dark .cpill{color:#16140f}
+.cn-one{display:flex;flex-direction:column;align-items:center;gap:6px;padding:26px 36px;border-radius:22px;background:var(--glass-bg);border:1px solid var(--glass-border);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:0 0 70px -18px var(--primary)}
+.cn-logo{width:36px;height:36px;border-radius:9px;margin-bottom:2px}
+.cflow{display:flex;align-items:center;justify-content:center;color:var(--primary);font-size:26px;opacity:.85}
+.consol-pay{display:flex;flex-wrap:wrap;justify-content:center;gap:14px 34px;margin-top:46px;padding-top:28px;border-top:1px solid var(--border);font-size:15px;color:var(--ink-soft);font-weight:500}
+.consol-pay b{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;color:var(--primary-dark);font-size:20px}
+@media(max-width:860px){
+ .consol-flow{grid-template-columns:1fr;gap:8px}
+ .cflow{transform:rotate(90deg);font-size:22px}
+}
+
 </style>
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 </head>
@@ -851,27 +877,52 @@ html.dark .glass{box-shadow:0 12px 38px -16px rgba(0,0,0,.62)}
    <div class="ig-bar"><span class="ig-lab">Simplify</span><div class="ig-track"><i class="ig-fill teal" data-w="9%"></i></div><b>$7.80</b></div>
    <p style="font-size:12px;color:var(--muted);margin-top:6px;text-align:center">per person, per month. Stack prices are ballpark list prices.</p>
   </div>
-  <p class="gridlead reveal">How the stack maps over</p>
-  <div class="swap-grid reveal">
-   <div class="swap glass"><img src="https://simplifysuite.io/images/jira.webp" alt="Jira logo" width="22" height="22" loading="lazy"><s>Jira</s><span class="arr">→</span><b>Ticketing &amp; Projects</b></div>
-   <div class="swap glass"><img src="https://simplifysuite.io/images/calendly.png" alt="Calendly logo" width="22" height="22" loading="lazy"><s>Calendly</s><span class="arr">→</span><b>Meeting Scheduler</b></div>
-   <div class="swap glass"><img src="https://simplifysuite.io/images/expensify.webp" alt="Expensify logo" width="22" height="22" loading="lazy"><s>Expensify</s><span class="arr">→</span><b>Expense Notes</b></div>
-   <div class="swap glass"><img src="https://simplifysuite.io/images/notion.webp" alt="Notion logo" width="22" height="22" loading="lazy"><s>Notion</s><span class="arr">→</span><b>Documents</b></div>
-   <div class="swap glass"><img src="https://simplifysuite.io/images/monday.webp" alt="Monday.com logo" width="22" height="22" loading="lazy"><s>Monday</s><span class="arr">→</span><b>Planning</b></div>
-   <div class="swap glass"><img src="https://simplifysuite.io/images/zoho.webp" alt="Zoho logo" width="22" height="22" loading="lazy"><s>Zoho</s><span class="arr">→</span><b>Budget &amp; CRM</b></div>
-   <div class="swap glass"><img src="https://simplifysuite.io/images/showpad.webp" alt="Showpad logo" width="22" height="22" loading="lazy"><s>Showpad</s><span class="arr">→</span><b>Sales Packs</b></div>
-   <div class="swap glass"><img src="https://simplifysuite.io/images/staffcircle.svg" alt="Staffcircle logo" width="22" height="22" loading="lazy"><s>Staffcircle</s><span class="arr">→</span><b>Performance</b></div>
-   <div class="swap glass"><img src="https://simplifysuite.io/images/trello.webp" alt="Trello logo" width="22" height="22" loading="lazy"><s>Trello</s><span class="arr">→</span><b>Planning &amp; Tickets</b></div>
-   <div class="swap glass"><img src="https://simplifysuite.io/images/plane.svg" alt="Plane logo" width="22" height="22" loading="lazy"><s>Plane</s><span class="arr">→</span><b>Projects</b></div>
-   <div class="swap glass"><img src="https://simplifysuite.io/images/productive.svg" alt="Productive logo" width="22" height="22" loading="lazy"><s>Productive</s><span class="arr">→</span><b>Budget &amp; Planning</b></div>
-   <div class="swap glass"><img src="https://simplifysuite.io/images/obsidian.webp" alt="Obsidian logo" width="22" height="22" loading="lazy"><s>Obsidian</s><span class="arr">→</span><b>Documents</b></div>
+<div class="consol" id="consol">
+ <p class="consol-lead">From a dozen logins to one</p>
+ <div class="consol-flow">
+  <div class="cnode cnode-a">
+   <div class="cn-logos">
+    <img src="https://simplifysuite.io/images/jira.webp" alt="Jira" width="42" height="42" loading="lazy">
+    <img src="https://simplifysuite.io/images/calendly.png" alt="Calendly" width="42" height="42" loading="lazy">
+    <img src="https://simplifysuite.io/images/expensify.webp" alt="Expensify" width="42" height="42" loading="lazy">
+    <img src="https://simplifysuite.io/images/notion.webp" alt="Notion" width="42" height="42" loading="lazy">
+    <img src="https://simplifysuite.io/images/monday.webp" alt="Monday" width="42" height="42" loading="lazy">
+    <img src="https://simplifysuite.io/images/zoho.webp" alt="Zoho" width="42" height="42" loading="lazy">
+    <img src="https://simplifysuite.io/images/showpad.webp" alt="Showpad" width="42" height="42" loading="lazy">
+    <img src="https://simplifysuite.io/images/staffcircle.svg" alt="Staffcircle" width="42" height="42" loading="lazy">
+    <img src="https://simplifysuite.io/images/trello.webp" alt="Trello" width="42" height="42" loading="lazy">
+    <img src="https://simplifysuite.io/images/plane.svg" alt="Plane" width="42" height="42" loading="lazy">
+    <img src="https://simplifysuite.io/images/productive.svg" alt="Productive" width="42" height="42" loading="lazy">
+    <img src="https://simplifysuite.io/images/obsidian.webp" alt="Obsidian" width="42" height="42" loading="lazy">
+   </div>
+   <div class="cn-badge"><span class="cn-num" data-c="12">12</span><span class="cn-cap">tools, tabs &amp; bills</span></div>
   </div>
-  <div class="stats" style="margin-top:48px">
-   <div class="stat glass reveal"><p class="n"><span data-count="10">10</span>×</p><p class="d">SaaS tools replaced</p></div>
-   <div class="stat glass reveal"><p class="n"><span data-count="80">80</span>%</p><p class="d">potential cost savings</p></div>
-   <div class="stat glass reveal"><p class="n">Daily</p><p class="d">cashflow visibility</p></div>
-   <div class="stat glass reveal"><p class="n">1</p><p class="d">login for everything</p></div>
+  <div class="cflow cflow-1"><i class="ti ti-chevrons-right"></i></div>
+  <div class="cnode cnode-b">
+   <div class="cn-pills">
+    <span class="cpill" style="--c:var(--teal)"><i class="ti ti-coin-euro"></i> Finance</span>
+    <span class="cpill" style="--c:var(--amber)"><i class="ti ti-users"></i> People</span>
+    <span class="cpill" style="--c:var(--coral)"><i class="ti ti-trending-up"></i> Sales</span>
+    <span class="cpill" style="--c:var(--primary)"><i class="ti ti-layout-kanban"></i> Workspace</span>
+   </div>
+   <div class="cn-badge"><span class="cn-num" data-c="4">4</span><span class="cn-cap">pillars, one shared database</span></div>
   </div>
+  <div class="cflow cflow-2"><i class="ti ti-chevrons-right"></i></div>
+  <div class="cnode cnode-c">
+   <div class="cn-one">
+    <img src="https://simplifysuite.io/images/simplify-square-512.png" class="cn-logo" alt="Simplify" width="36" height="36" loading="lazy">
+    <span class="cn-num big" data-c="1">1</span>
+    <span class="cn-cap">login for everything</span>
+   </div>
+  </div>
+ </div>
+ <div class="consol-pay">
+  <span><b data-c="10">10</b>x tools retired</span>
+  <span><b data-c="80">80</b>% less spend</span>
+  <span><b>Daily</b> cashflow visibility</span>
+  <span><b>Zero</b> tabs to juggle</span>
+ </div>
+</div>
  </div>
 </section>
 
@@ -1374,6 +1425,31 @@ if (!reduceMotion) {
  if(bcells.length){gsap.set(bcells,{opacity:0,y:24});
   ST.batch(bcells,{start:"top 86%",onEnter:function(els){gsap.to(els,{opacity:1,y:0,duration:0.7,stagger:0.12,ease:"power3.out",overwrite:true});}});
  }
+})();
+</script>
+<script>
+/*consol-anim*/
+(function(){
+ var sec=document.getElementById("consol"); if(!sec)return;
+ var reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
+ if(reduce||!window.gsap||!window.ScrollTrigger)return;
+ var gsap=window.gsap, ST=window.ScrollTrigger; gsap.registerPlugin(ST);
+ var tl=gsap.timeline({scrollTrigger:{trigger:sec,start:"top 72%"}});
+ tl.from(".cnode-a .cn-logos img",{opacity:0,scale:0.3,rotation:function(){return gsap.utils.random(-40,40);},x:function(){return gsap.utils.random(-50,50);},y:function(){return gsap.utils.random(-34,34);},stagger:0.03,duration:0.55,ease:"back.out(1.7)"},0)
+   .from(".cnode-a .cn-badge",{opacity:0,y:12,duration:0.4},"-=0.2")
+   .from(".cflow-1",{opacity:0,scale:0.4,duration:0.35,ease:"back.out(2)"},"-=0.1")
+   .from(".cnode-b .cpill",{opacity:0,x:-18,stagger:0.07,duration:0.4,ease:"power3.out"},"<")
+   .from(".cnode-b .cn-badge",{opacity:0,y:12,duration:0.4},"<0.1")
+   .from(".cflow-2",{opacity:0,scale:0.4,duration:0.35,ease:"back.out(2)"},"-=0.05")
+   .from(".cnode-c .cn-one",{opacity:0,scale:0.6,duration:0.6,ease:"back.out(1.5)"},"-=0.05")
+   .from(".consol-pay span",{opacity:0,y:12,stagger:0.08,duration:0.4},"-=0.2");
+ sec.querySelectorAll("[data-c]").forEach(function(el){
+  var end=parseFloat(el.getAttribute("data-c"))||0;
+  ST.create({trigger:el,start:"top 92%",once:true,onEnter:function(){
+   if(window.anime){var o={v:0};anime({targets:o,v:end,round:1,duration:1300,easing:"easeOutExpo",update:function(){el.textContent=o.v;}});}
+   else el.textContent=end;
+  }});
+ });
 })();
 </script>
 </body>
