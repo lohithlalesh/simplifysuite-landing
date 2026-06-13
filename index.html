@@ -1317,5 +1317,14 @@ if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
  }catch(e){}
 })();
 </script>
+<script>
+/* hero-failsafe: guarantee the headline is fully visible even if the reveal is interrupted (tab switch, throttled rAF) */
+(function(){
+ function fix(){document.querySelectorAll(".hero .hwrd").forEach(function(w){try{w.getAnimations().forEach(function(a){a.finish();});}catch(e){}w.style.opacity="1";w.style.transform="none";});}
+ setTimeout(fix,1400);
+ document.addEventListener("visibilitychange",function(){if(!document.hidden)setTimeout(fix,150);});
+ addEventListener("load",function(){setTimeout(fix,1600);});
+})();
+</script>
 </body>
 </html>
