@@ -542,6 +542,26 @@ html.dark .cpill{color:#16140f}
  .cflow{transform:rotate(90deg);font-size:22px}
 }
 
+
+/* ===== compounding bill (reimagined why-switch) ===== */
+.bill2{max-width:780px;margin:0 auto 8px;text-align:center}
+.bill-tools{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-bottom:34px}
+.btool{display:inline-flex;align-items:center;gap:8px;font-size:13.5px;font-weight:600;color:var(--ink-soft);background:var(--wg-bg);border:1px solid var(--wg-border);border-radius:99px;padding:7px 15px}
+.btool img{width:18px;height:18px;object-fit:contain;border-radius:4px}
+html.dark .btool img{background:#ece8df}
+.btool b{color:var(--coral);font-weight:700}
+.bill-old,.bill-new{display:flex;flex-direction:column;align-items:center;gap:5px}
+.bill-amt{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;line-height:1;letter-spacing:-.02em}
+.bill-amt.old{font-size:clamp(56px,9vw,94px);color:var(--coral)}
+.bill-amt.new{font-size:clamp(68px,11vw,122px);background:linear-gradient(120deg,var(--teal),var(--primary));-webkit-background-clip:text;background-clip:text;color:transparent}
+.bill-per{font-size:14px;color:var(--muted);max-width:380px;margin:0 auto;line-height:1.4}
+.bill-pivot{display:inline-flex;align-items:center;gap:10px;font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--primary);margin:30px 0}
+.bill-pivot i{font-size:22px}
+.bill-save{display:inline-flex;align-items:center;gap:7px;background:var(--teal-soft);color:var(--teal-text);font-weight:700;font-size:13.5px;padding:6px 16px;border-radius:99px;margin-top:16px}
+.bill-ticks{display:flex;flex-wrap:wrap;justify-content:center;gap:12px 30px;margin-top:38px;font-size:15px;color:var(--ink-soft);font-weight:500}
+.bill-ticks span{display:inline-flex;align-items:center;gap:8px}
+.bill-ticks .ti{color:var(--teal)}
+
 </style>
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 </head>
@@ -847,36 +867,33 @@ html.dark .cpill{color:#16140f}
    <h2>Every growing team tells the same story</h2>
    <p>It never starts as a problem. It becomes one, one subscription at a time.</p>
   </div>
-  <div class="infog reveal" id="infog">
-   <div class="ig-col glass">
-    <p class="ig-h"><i class="ti ti-stack-2"></i> The stack, by year two</p>
-    <div class="trow"><img src="https://simplifysuite.io/images/jira.webp" alt="Jira logo" width="22" height="22" loading="lazy"><span>Jira</span><b>+ $8</b></div>
-    <div class="trow"><img src="https://simplifysuite.io/images/calendly.png" alt="Calendly logo" width="22" height="22" loading="lazy"><span>Calendly</span><b>+ $12</b></div>
-    <div class="trow"><img src="https://simplifysuite.io/images/expensify.webp" alt="Expensify logo" width="22" height="22" loading="lazy"><span>Expensify</span><b>+ $10</b></div>
-    <div class="trow"><img src="https://simplifysuite.io/images/notion.webp" alt="Notion logo" width="22" height="22" loading="lazy"><span>Notion</span><b>+ $10</b></div>
-    <div class="trow"><img src="https://simplifysuite.io/images/monday.webp" alt="Monday.com logo" width="22" height="22" loading="lazy"><span>Monday</span><b>+ $12</b></div>
-    <div class="trow"><img src="https://simplifysuite.io/images/zoho.webp" alt="Zoho logo" width="22" height="22" loading="lazy"><span>Zoho</span><b>+ $15</b></div>
-    <div class="trow"><img src="https://simplifysuite.io/images/showpad.webp" alt="Showpad logo" width="22" height="22" loading="lazy"><span>Showpad</span><b>+ $25</b></div>
-    <div class="ig-total"><span>Monthly bill, per person</span><b>≈ $<span id="bill">92</span></b></div>
-   </div>
-   <div class="ig-mid"><i class="ti ti-arrow-big-right-lines"></i><span>one decision</span></div>
-   <div class="ig-col glass ig-one">
-    <p class="ig-h"><img src="https://simplifysuite.io/images/simplify-square-512.png" alt="" width="18" height="18" loading="lazy" style="width:18px;height:18px;border-radius:4px"> One platform</p>
-    <p class="ig-big">$7.80<span>/person</span></p>
-    <p class="ig-sub">Startup plan, 15 people, everything included</p>
-    <span class="ig-save"><i class="ti ti-arrow-down-right"></i> about 92% less per person</span>
-    <ul>
-     <li><i class="ti ti-check"></i>One login, one bill</li>
-     <li><i class="ti ti-check"></i>Modules share the same data</li>
-     <li><i class="ti ti-check"></i>No more Friday copy-paste between tools</li>
-    </ul>
-   </div>
-  </div>
-  <div class="ig-bars reveal">
-   <div class="ig-bar"><span class="ig-lab">Typical stack</span><div class="ig-track"><i class="ig-fill coral" data-w="100%"></i></div><b>≈ $92</b></div>
-   <div class="ig-bar"><span class="ig-lab">Simplify</span><div class="ig-track"><i class="ig-fill teal" data-w="9%"></i></div><b>$7.80</b></div>
-   <p style="font-size:12px;color:var(--muted);margin-top:6px;text-align:center">per person, per month. Stack prices are ballpark list prices.</p>
-  </div>
+<div class="bill2" id="billsec">
+ <p class="consol-lead">The stack, by year two</p>
+ <div class="bill-tools">
+   <span class="btool"><img src="https://simplifysuite.io/images/jira.webp" alt="Jira" width="18" height="18" loading="lazy">Jira <b>+$8</b></span>
+   <span class="btool"><img src="https://simplifysuite.io/images/calendly.png" alt="Calendly" width="18" height="18" loading="lazy">Calendly <b>+$12</b></span>
+   <span class="btool"><img src="https://simplifysuite.io/images/expensify.webp" alt="Expensify" width="18" height="18" loading="lazy">Expensify <b>+$10</b></span>
+   <span class="btool"><img src="https://simplifysuite.io/images/notion.webp" alt="Notion" width="18" height="18" loading="lazy">Notion <b>+$10</b></span>
+   <span class="btool"><img src="https://simplifysuite.io/images/monday.webp" alt="Monday" width="18" height="18" loading="lazy">Monday <b>+$12</b></span>
+   <span class="btool"><img src="https://simplifysuite.io/images/zoho.webp" alt="Zoho" width="18" height="18" loading="lazy">Zoho <b>+$15</b></span>
+   <span class="btool"><img src="https://simplifysuite.io/images/showpad.webp" alt="Showpad" width="18" height="18" loading="lazy">Showpad <b>+$25</b></span>
+ </div>
+ <div class="bill-old">
+  <span class="bill-amt old">$<span data-c="92">0</span></span>
+  <span class="bill-per">per person, every month - seven tools, seven bills</span>
+ </div>
+ <div class="bill-pivot"><i class="ti ti-arrow-down"></i> one decision</div>
+ <div class="bill-new">
+  <span class="bill-amt new">$7.80</span>
+  <span class="bill-per">per person, everything included - Startup plan, 15 people</span>
+  <span class="bill-save"><i class="ti ti-arrow-down-right"></i> about 92% less per person</span>
+ </div>
+ <div class="bill-ticks">
+  <span><i class="ti ti-check"></i> One login, one bill</span>
+  <span><i class="ti ti-check"></i> Modules share the same data</span>
+  <span><i class="ti ti-check"></i> No more Friday copy-paste between tools</span>
+ </div>
+</div>
 <div class="consol" id="consol">
  <p class="consol-lead">From a dozen logins to one</p>
  <div class="consol-flow">
@@ -1450,6 +1467,29 @@ if (!reduceMotion) {
    else el.textContent=end;
   }});
  });
+})();
+</script>
+<script>
+/*bill-anim*/
+(function(){
+ var sec=document.getElementById("billsec"); if(!sec)return;
+ function fin(){var c=sec.querySelector("[data-c]");if(c)c.textContent=c.getAttribute("data-c");}
+ var reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
+ if(reduce||!window.gsap||!window.ScrollTrigger){fin();return;}
+ var gsap=window.gsap, ST=window.ScrollTrigger; gsap.registerPlugin(ST);
+ var tl=gsap.timeline({scrollTrigger:{trigger:sec,start:"top 76%"}});
+ tl.from(".bill-tools .btool",{opacity:0,y:14,scale:0.9,stagger:0.06,duration:0.4,ease:"back.out(1.5)"},0)
+   .from(".bill-old",{opacity:0,y:10,duration:0.4},0.35)
+   .from(".bill-pivot",{opacity:0,scale:0.6,duration:0.4,ease:"back.out(2)"},0.8)
+   .from(".bill-new",{opacity:0,scale:0.7,duration:0.6,ease:"back.out(1.5)"},0.95)
+   .from(".bill-save",{opacity:0,y:8,duration:0.4},1.2)
+   .from(".bill-ticks span",{opacity:0,y:10,stagger:0.08,duration:0.4},1.3);
+ var c=sec.querySelector("[data-c]");
+ if(c){var end=parseFloat(c.getAttribute("data-c"))||0;
+  ST.create({trigger:c,start:"top 90%",once:true,onEnter:function(){
+   if(window.anime){var o={v:0};anime({targets:o,v:end,round:1,duration:1500,easing:"easeOutCubic",update:function(){c.textContent=o.v;}});}else c.textContent=end;
+  }});
+ }
 })();
 </script>
 </body>
