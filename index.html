@@ -1215,25 +1215,18 @@ if (!reduceMotion) {
  var VS="attribute vec2 p;void main(){gl_Position=vec4(p,0.,1.);}";
  var FS=["precision highp float;",
  "uniform vec2 u_res;uniform float u_time;uniform vec2 u_mouse;uniform float u_scroll;",
- "uniform vec3 u_base;uniform vec3 u_c1;uniform vec3 u_c2;uniform vec3 u_c3;uniform float u_amp;",
+ "uniform vec3 u_base;uniform vec3 u_glow;uniform float u_amp;",
  "float h(vec2 p){return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453);}",
  "void main(){",
  " vec2 uv=gl_FragCoord.xy/u_res;vec2 p=uv;p.x*=u_res.x/u_res.y;",
- " float t=u_time*0.05;p.y+=u_scroll*0.30;",
+ " float t=u_time*0.04;p.y+=u_scroll*0.25;",
  " vec2 m=u_mouse;m.x*=u_res.x/u_res.y;",
- " vec2 q=p;",
- " q+=0.18*vec2(sin(p.y*3.0+t*1.3),cos(p.x*3.0-t*1.1));",
- " q+=0.12*vec2(sin(q.y*5.0-t*0.9+m.x*0.6),cos(q.x*5.0+t*0.7+m.y*0.6));",
- " vec2 a=vec2(0.28+0.20*sin(t*0.9),0.32+0.18*cos(t*1.1));",
- " vec2 b=vec2(0.74+0.16*cos(t*0.8),0.60+0.20*sin(t*1.05));",
- " vec2 c=vec2(0.50+0.24*sin(t*0.6+1.5),0.88+0.14*cos(t*0.75));",
- " float f1=smoothstep(0.95,0.0,distance(q,a));",
- " float f2=smoothstep(1.00,0.0,distance(q,b));",
- " float f3=smoothstep(1.05,0.0,distance(q,c));",
- " vec3 col=u_base;",
- " col=mix(col,u_c1,clamp(f1*u_amp,0.0,1.0));",
- " col=mix(col,u_c2,clamp(f2*u_amp,0.0,1.0));",
- " col=mix(col,u_c3,clamp(f3*u_amp*0.85,0.0,1.0));",
+ " vec2 a=vec2(0.30+0.15*sin(t*0.8)+m.x*0.12,0.34+0.13*cos(t*0.9)+m.y*0.12);",
+ " vec2 b=vec2(0.72+0.13*cos(t*0.7),0.66+0.15*sin(t*0.85));",
+ " float f1=smoothstep(1.05,0.0,distance(p,a));",
+ " float f2=smoothstep(1.18,0.0,distance(p,b));",
+ " float g=clamp((f1*0.75+f2*0.45)*u_amp,0.0,1.0);",
+ " vec3 col=mix(u_base,u_glow,g);",
  " col+=(h(gl_FragCoord.xy+u_time)-0.5)/255.0;",
  " gl_FragColor=vec4(col,1.0);}"].join("");
  function mk(t,s){var o=gl.createShader(t);gl.shaderSource(o,s);gl.compileShader(o);return o;}
@@ -1241,9 +1234,9 @@ if (!reduceMotion) {
  var bf=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,bf);gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,3,-1,-1,3]),gl.STATIC_DRAW);
  var lc=gl.getAttribLocation(pr,"p");gl.enableVertexAttribArray(lc);gl.vertexAttribPointer(lc,2,gl.FLOAT,false,0,0);
  var U=function(n){return gl.getUniformLocation(pr,n);};
- var uRes=U("u_res"),uT=U("u_time"),uM=U("u_mouse"),uS=U("u_scroll"),uB=U("u_base"),u1=U("u_c1"),u2=U("u_c2"),u3=U("u_c3"),uA=U("u_amp");
- var PAL={light:{base:[0.965,0.957,0.941],c1:[0.79,0.73,0.96],c2:[0.74,0.92,0.88],c3:[0.97,0.90,0.78],amp:0.50},
- dark:{base:[0.015,0.012,0.022],c1:[0.46,0.33,0.92],c2:[0.16,0.80,0.70],c3:[0.86,0.60,0.24],amp:0.60}};
+ var uRes=U("u_res"),uT=U("u_time"),uM=U("u_mouse"),uS=U("u_scroll"),uB=U("u_base"),uG=U("u_glow"),uA=U("u_amp");
+ var PAL={light:{base:[0.965,0.957,0.941],glow:[0.84,0.78,0.97],amp:0.45},
+ dark:{base:[0.0,0.0,0.0],glow:[0.34,0.20,0.66],amp:0.85}};
  var pal=PAL.dark;
  function setPal(){pal=document.documentElement.classList.contains("dark")?PAL.dark:PAL.light;}
  setPal();new MutationObserver(setPal).observe(document.documentElement,{attributes:true,attributeFilter:["class"]});
@@ -1255,7 +1248,7 @@ if (!reduceMotion) {
  var raf,vis=true;
  function frame(time){size();mx+=(tmx-mx)*0.05;my+=(tmy-my)*0.05;scr+=(tscr-scr)*0.06;
   gl.uniform2f(uRes,cv.width,cv.height);gl.uniform1f(uT,time*0.001);gl.uniform2f(uM,mx,my);gl.uniform1f(uS,scr);
-  gl.uniform3fv(uB,pal.base);gl.uniform3fv(u1,pal.c1);gl.uniform3fv(u2,pal.c2);gl.uniform3fv(u3,pal.c3);gl.uniform1f(uA,pal.amp);
+  gl.uniform3fv(uB,pal.base);gl.uniform3fv(uG,pal.glow);gl.uniform1f(uA,pal.amp);
   gl.drawArrays(gl.TRIANGLES,0,3);}
  function loop(time){if(!vis)return;frame(time);raf=requestAnimationFrame(loop);}
  document.addEventListener("visibilitychange",function(){vis=!document.hidden;if(vis&&!reduce){cancelAnimationFrame(raf);raf=requestAnimationFrame(loop);}});
@@ -1310,7 +1303,7 @@ if (!reduceMotion) {
   var hp=document.querySelector(".hsketch path"); if(hp)hp.style.strokeDashoffset="0";
  }
  if(reduce||!A){showAll();return;}
- var heroEls=[].slice.call(document.querySelectorAll(".hero-left > *:not(.hsketch)")).concat([].slice.call(document.querySelectorAll(".hero-right .persp")));
+ var heroEls=[].slice.call(document.querySelectorAll(".hero-left > *:not(.hsketch)"));
  heroEls.forEach(function(e){e.style.opacity=0;});
  A({targets:heroEls,translateY:[26,0],opacity:[0,1],easing:"easeOutElastic(1,.75)",duration:1200,delay:A.stagger(85,{start:120})});
  var hp=document.querySelector(".hsketch path");
@@ -1322,14 +1315,14 @@ if (!reduceMotion) {
   var idx=sibs.indexOf(el);if(idx<0)idx=0;
   A({targets:el,translateY:[22,0],opacity:[0,1],easing:"easeOutElastic(1,.8)",duration:1050,delay:idx*70});
  });},{threshold:.12,rootMargin:"0px 0px -7% 0px"});
- document.querySelectorAll(".reveal").forEach(function(el){if(el.closest(".hero"))return;rIO.observe(el);});
+ document.querySelectorAll(".reveal").forEach(function(el){if(el.closest(".hero")||el.classList.contains("bcell"))return;rIO.observe(el);});
  var pIO=new IntersectionObserver(function(es){es.forEach(function(en){
   if(!en.isIntersecting)return;pIO.unobserve(en.target);var p=en.target,alt=p.classList.contains("alt");
   var tx=p.querySelector(".ptext"),fr=p.querySelector(".pframe");
   if(tx)A({targets:tx,translateX:[alt?22:-22,0],opacity:[0,1],easing:"easeOutElastic(1,.85)",duration:1050});
   if(fr)A({targets:fr,translateX:[alt?-22:22,0],opacity:[0,1],easing:"easeOutElastic(1,.85)",duration:1050,delay:80});
  });},{threshold:.1,rootMargin:"0px 0px -5% 0px"});
- document.querySelectorAll(".panel").forEach(function(p){pIO.observe(p);});
+ ;/*gsap-pillars*/
  var sg=document.querySelector(".swap-grid");
  if(sg){var sIO=new IntersectionObserver(function(es){es.forEach(function(en){if(!en.isIntersecting)return;sIO.disconnect();
    [].slice.call(sg.querySelectorAll(".swap s")).forEach(function(s,i){setTimeout(function(){s.classList.add("done");},i*85);});});},{threshold:.2});sIO.observe(sg);}
@@ -1338,6 +1331,49 @@ if (!reduceMotion) {
   var cIO=new IntersectionObserver(function(es){es.forEach(function(en){if(!en.isIntersecting)return;cIO.disconnect();
    var o={v:0};A({targets:o,v:end,round:1,easing:"easeOutExpo",duration:1700,update:function(){el.textContent=o.v;}});});},{threshold:.5});cIO.observe(el);
  });
+})();
+</script>
+<script>
+/*gsap-story*/
+(function(){
+ var reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
+ function showStory(){
+  document.querySelectorAll(".panel .ptext,.panel .pframe").forEach(function(e){e.style.opacity="1";e.style.transform="none";});
+  document.querySelectorAll(".panel").forEach(function(p){p.classList.add("vis");});
+  document.querySelectorAll(".bcell").forEach(function(b){b.style.opacity="1";b.style.transform="none";b.classList.add("in");});
+  document.querySelectorAll(".hero-right .persp").forEach(function(s){s.style.opacity="1";s.style.transform="none";});
+ }
+ if(reduce||!window.gsap){showStory();return;}
+ var gsap=window.gsap,ST=window.ScrollTrigger; if(ST)gsap.registerPlugin(ST);
+ // hero dashboard assembles
+ var persp=document.querySelector(".hero-right .persp");
+ if(persp){gsap.set(persp,{opacity:0,y:24});
+  var tl=gsap.timeline({delay:0.2});
+  tl.to(persp,{opacity:1,y:0,duration:0.7,ease:"power3.out"})
+    .from(".hero-right .shot-side .it",{opacity:0,x:-8,duration:0.35,stagger:0.04,ease:"power2.out"},"-=0.35")
+    .from(".hero-right .view.on .wg",{opacity:0,y:18,scale:0.95,duration:0.5,stagger:0.06,ease:"back.out(1.4)"},"-=0.25");
+ }
+ if(!ST){showStory();return;}
+ // four pillars narrate
+ document.querySelectorAll(".panel").forEach(function(p){
+  var alt=p.classList.contains("alt");
+  var tx=p.querySelector(".ptext"), fr=p.querySelector(".pframe"), mods=p.querySelectorAll(".mod");
+  var t=gsap.timeline({scrollTrigger:{trigger:p,start:"top 80%"}});
+  if(fr)t.fromTo(fr,{opacity:0,x:alt?-44:44,scale:0.94},{opacity:1,x:0,scale:1,duration:0.8,ease:"power3.out"},0);
+  if(tx)t.fromTo(tx,{opacity:0,x:alt?24:-24},{opacity:1,x:0,duration:0.6,ease:"power3.out"},0.1);
+  if(mods.length)t.fromTo(mods,{opacity:0,x:alt?16:-16},{opacity:1,x:0,duration:0.45,stagger:0.1,ease:"power2.out"},0.35);
+ });
+ // why-switch: stack collapses into one
+ var infog=document.querySelector(".infog");
+ if(infog){var one=infog.querySelector(".ig-one"), mid=infog.querySelector(".ig-mid");
+  if(one)gsap.fromTo(one,{scale:0.9,opacity:0.55},{scale:1,opacity:1,ease:"none",scrollTrigger:{trigger:infog,start:"top 82%",end:"center 60%",scrub:0.6}});
+  if(mid)gsap.fromTo(mid,{opacity:0,scale:0.4},{opacity:1,scale:1,duration:0.6,ease:"back.out(2)",scrollTrigger:{trigger:infog,start:"top 75%"}});
+ }
+ // bento cells assemble
+ var bcells=document.querySelectorAll(".bcell");
+ if(bcells.length){gsap.set(bcells,{opacity:0,y:24});
+  ST.batch(bcells,{start:"top 86%",onEnter:function(els){gsap.to(els,{opacity:1,y:0,duration:0.7,stagger:0.12,ease:"power3.out",overwrite:true});}});
+ }
 })();
 </script>
 </body>
