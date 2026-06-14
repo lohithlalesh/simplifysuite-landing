@@ -652,6 +652,19 @@ html.dark .toolmarq-track img{filter:brightness(0) invert(1) opacity(.6)}
 .toolmarq-tab img{height:24px;width:auto;border-radius:5px}
 .toolmarq-tab b{font-family:'Plus Jakarta Sans',sans-serif;font-size:14px;font-weight:700}
 @media(max-width:600px){.toolmarq-tab b{display:none}.toolmarq-tab{padding:11px}.toolmarq-track img{height:34px}}
+
+/* tool marquee: transparent brand icons, no boxes */
+.toolmarq-track .ticon{height:34px;width:auto;max-width:120px;object-fit:contain;filter:grayscale(1) brightness(0) opacity(.5);transition:filter .25s,opacity .25s}
+html.dark .toolmarq-track .ticon{filter:brightness(0) invert(1) opacity(.62)}
+.toolmarq-track .ticon:hover{filter:none;opacity:1}
+/* already trusted by: drop chips, clean filter */
+.logo-row img{background:none!important;border:none!important;border-radius:0!important;padding:0!important;max-width:132px!important;height:34px!important;filter:grayscale(1) opacity(.55)!important;transition:filter .25s,opacity .25s!important}
+html.dark .logo-row img{background:none!important;filter:grayscale(1) invert(1) brightness(1.05) opacity(.72)!important}
+.logo-row img:hover{filter:none!important;opacity:1!important}
+/* flowchart: picturized chips */
+.fchip{justify-content:flex-start}
+.fchip .fthumb{margin-left:auto;width:108px;height:62px;border-radius:9px;object-fit:cover;object-position:top left;border:1px solid var(--border);flex:none;background:var(--wg-bg)}
+@media(max-width:600px){.fchip .fthumb{display:none}}
 </style>
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin="">
 </head>
@@ -818,18 +831,18 @@ html.dark .toolmarq-track img{filter:brightness(0) invert(1) opacity(.6)}
    <p class="fmid">then, automatically, across every module</p>
    <div class="fbranch">
     <div class="fcol">
-     <div class="fchip glass"><span class="fci" style="background:var(--amber)"><i class="ti ti-file-invoice"></i></span><div><b>Invoice created</b><small>Invoicing</small></div></div>
+     <div class="fchip glass"><span class="fci" style="background:var(--amber)"><i class="ti ti-file-invoice"></i></span><div><b>Invoice created</b><small>Invoicing</small></div><img class="fthumb" data-shot="invoicing" src="shot-invoicing-light.jpg" alt="" loading="lazy"></div>
      <div class="fline sm"></div>
-     <div class="fchip glass"><span class="fci" style="background:var(--teal)"><i class="ti ti-chart-line"></i></span><div><b>Budget &amp; runway updated</b><small>Finance</small></div></div>
+     <div class="fchip glass"><span class="fci" style="background:var(--teal)"><i class="ti ti-chart-line"></i></span><div><b>Budget &amp; runway updated</b><small>Finance</small></div><img class="fthumb" data-shot="finance" src="shot-finance-light.jpg" alt="" loading="lazy"></div>
      <div class="fline sm"></div>
-     <div class="fchip glass"><span class="fci" style="background:var(--teal)"><i class="ti ti-coin-euro"></i></span><div><b>Commission logged</b><small>Salary</small></div></div>
+     <div class="fchip glass"><span class="fci" style="background:var(--teal)"><i class="ti ti-coin-euro"></i></span><div><b>Commission logged</b><small>Salary</small></div><img class="fthumb" data-shot="people" src="shot-people-light.jpg" alt="" loading="lazy"></div>
     </div>
     <div class="fcol">
-     <div class="fchip glass"><span class="fci" style="background:var(--primary)"><i class="ti ti-layout-kanban"></i></span><div><b>Onboarding project created</b><small>Projects</small></div></div>
+     <div class="fchip glass"><span class="fci" style="background:var(--primary)"><i class="ti ti-layout-kanban"></i></span><div><b>Onboarding project created</b><small>Projects</small></div><img class="fthumb" data-shot="projects" src="shot-projects-light.jpg" alt="" loading="lazy"></div>
      <div class="fline sm"></div>
-     <div class="fchip glass"><span class="fci" style="background:var(--primary)"><i class="ti ti-calendar-time"></i></span><div><b>Kickoff scheduled</b><small>Meetings</small></div></div>
+     <div class="fchip glass"><span class="fci" style="background:var(--primary)"><i class="ti ti-calendar-time"></i></span><div><b>Kickoff scheduled</b><small>Meetings</small></div><img class="fthumb" data-shot="meetings" src="shot-meetings-light.jpg" alt="" loading="lazy"></div>
      <div class="fline sm"></div>
-     <div class="fchip glass"><span class="fci" style="background:var(--coral)"><i class="ti ti-users"></i></span><div><b>Team briefed</b><small>AI Briefings</small></div></div>
+     <div class="fchip glass"><span class="fci" style="background:var(--coral)"><i class="ti ti-users"></i></span><div><b>Team briefed</b><small>AI Briefings</small></div><img class="fthumb" data-shot="ai" src="shot-ai-light.jpg" alt="" loading="lazy"></div>
     </div>
    </div>
    <p class="fnote-b"><i class="ti ti-circle-check"></i> one shared database · zero integrations · one login</p>
@@ -872,7 +885,7 @@ html.dark .toolmarq-track img{filter:brightness(0) invert(1) opacity(.6)}
  </div>
 </div>
 <div class="consol" id="consol">
- <p class="consol-lead">From a dozen logins to one</p><div class="toolmarq"><div class="toolmarq-track"><img src="https://simplifysuite.io/images/jira.webp" alt="Jira" loading="lazy"><img src="https://simplifysuite.io/images/calendly.png" alt="Calendly" loading="lazy"><img src="https://simplifysuite.io/images/expensify.webp" alt="Expensify" loading="lazy"><img src="https://simplifysuite.io/images/notion.webp" alt="Notion" loading="lazy"><img src="https://simplifysuite.io/images/monday.webp" alt="Monday" loading="lazy"><img src="https://simplifysuite.io/images/zoho.webp" alt="Zoho" loading="lazy"><img src="https://simplifysuite.io/images/showpad.webp" alt="Showpad" loading="lazy"><img src="https://simplifysuite.io/images/staffcircle.svg" alt="Staffcircle" loading="lazy"><img src="https://simplifysuite.io/images/trello.webp" alt="Trello" loading="lazy"><img src="https://simplifysuite.io/images/plane.svg" alt="Plane" loading="lazy"><img src="https://simplifysuite.io/images/productive.svg" alt="Productive" loading="lazy"><img src="https://simplifysuite.io/images/obsidian.webp" alt="Obsidian" loading="lazy"><img src="https://simplifysuite.io/images/jira.webp" alt="Jira" loading="lazy"><img src="https://simplifysuite.io/images/calendly.png" alt="Calendly" loading="lazy"><img src="https://simplifysuite.io/images/expensify.webp" alt="Expensify" loading="lazy"><img src="https://simplifysuite.io/images/notion.webp" alt="Notion" loading="lazy"><img src="https://simplifysuite.io/images/monday.webp" alt="Monday" loading="lazy"><img src="https://simplifysuite.io/images/zoho.webp" alt="Zoho" loading="lazy"><img src="https://simplifysuite.io/images/showpad.webp" alt="Showpad" loading="lazy"><img src="https://simplifysuite.io/images/staffcircle.svg" alt="Staffcircle" loading="lazy"><img src="https://simplifysuite.io/images/trello.webp" alt="Trello" loading="lazy"><img src="https://simplifysuite.io/images/plane.svg" alt="Plane" loading="lazy"><img src="https://simplifysuite.io/images/productive.svg" alt="Productive" loading="lazy"><img src="https://simplifysuite.io/images/obsidian.webp" alt="Obsidian" loading="lazy"></div><div class="toolmarq-tab glass"><img src="https://simplifysuite.io/images/simplify-square-512.png" alt="Simplify"><b>one login replaces all of these</b></div></div>
+ <p class="consol-lead">From a dozen logins to one</p><div class="toolmarq"><div class="toolmarq-track"><img class="ticon" src="https://cdn.simpleicons.org/jira" alt="jira" loading="lazy"><img class="ticon" src="https://cdn.simpleicons.org/calendly" alt="calendly" loading="lazy"><img class="ticon" src="https://cdn.simpleicons.org/expensify" alt="expensify" loading="lazy"><img class="ticon" src="https://cdn.simpleicons.org/notion" alt="notion" loading="lazy"><img class="ticon" src="https://cdn.simpleicons.org/mondaydotcom" alt="mondaydotcom" loading="lazy"><img class="ticon" src="https://cdn.simpleicons.org/zoho" alt="zoho" loading="lazy"><img class="ticon" src="https://cdn.simpleicons.org/trello" alt="trello" loading="lazy"><img class="ticon" src="https://cdn.simpleicons.org/obsidian" alt="obsidian" loading="lazy"><img class="ticon" src="https://cdn.simpleicons.org/asana" alt="asana" loading="lazy"><img class="ticon" src="https://cdn.simpleicons.org/clickup" alt="clickup" loading="lazy"><img class="ticon" src="https://cdn.simpleicons.org/slack" alt="slack" loading="lazy"><img class="ticon" src="https://cdn.simpleicons.org/hubspot" alt="hubspot" loading="lazy"><img class="ticon" src="https://cdn.simpleicons.org/jira" alt="jira" loading="lazy"><img class="ticon" src="https://cdn.simpleicons.org/calendly" alt="calendly" loading="lazy"><img class="ticon" src="https://cdn.simpleicons.org/expensify" alt="expensify" loading="lazy"><img class="ticon" src="https://cdn.simpleicons.org/notion" alt="notion" loading="lazy"><img class="ticon" src="https://cdn.simpleicons.org/mondaydotcom" alt="mondaydotcom" loading="lazy"><img class="ticon" src="https://cdn.simpleicons.org/zoho" alt="zoho" loading="lazy"><img class="ticon" src="https://cdn.simpleicons.org/trello" alt="trello" loading="lazy"><img class="ticon" src="https://cdn.simpleicons.org/obsidian" alt="obsidian" loading="lazy"><img class="ticon" src="https://cdn.simpleicons.org/asana" alt="asana" loading="lazy"><img class="ticon" src="https://cdn.simpleicons.org/clickup" alt="clickup" loading="lazy"><img class="ticon" src="https://cdn.simpleicons.org/slack" alt="slack" loading="lazy"><img class="ticon" src="https://cdn.simpleicons.org/hubspot" alt="hubspot" loading="lazy"></div><div class="toolmarq-tab glass"><img src="https://simplifysuite.io/images/simplify-square-512.png" alt="Simplify"><b>one login replaces all of these</b></div></div>
  <div class="consol-flow">
   <div class="cnode cnode-a">
    
