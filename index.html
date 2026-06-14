@@ -617,6 +617,41 @@ html.dark .fchip .fci{color:#16140f}
  .fbranch{grid-template-columns:1fr;gap:0}
  .fcol:nth-child(2){margin-top:24px}
 }
+
+/* explore: dashboard on display (left), card right */
+@media(min-width:981px){
+ .explore-stage{width:124%;margin-left:0}
+ .explore-card{left:auto;right:-26px;width:300px}
+}
+
+/* ===== module marquee cards ===== */
+.modmarquee{overflow:hidden;margin-top:42px;-webkit-mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent);mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent)}
+.modtrack{display:flex;gap:22px;width:max-content;animation:modmarq 75s linear infinite}
+.modmarquee:hover .modtrack{animation-play-state:paused}
+@keyframes modmarq{to{transform:translateX(-50%)}}
+@media (prefers-reduced-motion:reduce){.modtrack{animation:none;flex-wrap:wrap;width:auto;justify-content:center}}
+.modcard{width:380px;flex:none;border-radius:22px;padding:22px;position:relative;overflow:hidden;background:linear-gradient(165deg,color-mix(in oklch,var(--cc) 16%,var(--card)),var(--card));border:1px solid var(--border);box-shadow:var(--glass-shadow)}
+.modcard-h{display:flex;align-items:center;gap:11px;font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:15px}
+.modcard-ic{width:36px;height:36px;border-radius:10px;background:var(--cc);color:#fff;display:flex;align-items:center;justify-content:center;font-size:18px;flex:none}
+html.dark .modcard-ic{color:#16140f}
+.modcard h3{font-size:21px;font-weight:700;margin:14px 0 16px;line-height:1.2}
+.modcard-shot{border-radius:12px;overflow:hidden;border:1px solid var(--border);background:var(--wg-bg)}
+.modcard-shot img{display:block;width:100%;height:200px;object-fit:cover;object-position:top left}
+@media(max-width:600px){.modcard{width:300px}.modcard-shot img{height:168px}}
+
+/* ===== tool logo marquee + glass tab ===== */
+.toolmarq{position:relative;overflow:hidden;margin:6px 0 34px;padding:26px 0;-webkit-mask-image:linear-gradient(90deg,transparent,#000 13%,#000 87%,transparent);mask-image:linear-gradient(90deg,transparent,#000 13%,#000 87%,transparent)}
+.toolmarq-track{display:flex;align-items:center;gap:58px;width:max-content;animation:toolmarq 30s linear infinite}
+.toolmarq:hover .toolmarq-track{animation-play-state:paused}
+@keyframes toolmarq{to{transform:translateX(-50%)}}
+@media (prefers-reduced-motion:reduce){.toolmarq-track{animation:none;flex-wrap:wrap;width:auto;justify-content:center;gap:32px}}
+.toolmarq-track img{height:42px;width:auto;max-width:120px;object-fit:contain;filter:grayscale(1) opacity(.72);transition:filter .25s,opacity .25s}
+html.dark .toolmarq-track img{filter:brightness(0) invert(1) opacity(.6)}
+.toolmarq-track img:hover{filter:none;opacity:1}
+.toolmarq-tab{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);display:flex;align-items:center;gap:12px;padding:13px 22px;border-radius:16px;z-index:2;white-space:nowrap;box-shadow:0 18px 44px -18px rgba(0,0,0,.5)}
+.toolmarq-tab img{height:24px;width:auto;border-radius:5px}
+.toolmarq-tab b{font-family:'Plus Jakarta Sans',sans-serif;font-size:14px;font-weight:700}
+@media(max-width:600px){.toolmarq-tab b{display:none}.toolmarq-tab{padding:11px}.toolmarq-track img{height:34px}}
 </style>
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin="">
 </head>
@@ -698,74 +733,14 @@ html.dark .fchip .fci{color:#16140f}
    <p class="kicker">Finance, people, sales and projects are only the start. Invoicing, recruiting, documents, meetings and AI briefings all live in the same workspace, sharing one database. No integrations to babysit, no data silos.</p>
    <h2>One platform. Every workflow.</h2>
    <p>Every operation your business runs on, organized into Finance, People, Sales and Workspace. No integrations to babysit, no data silos.</p>
-  </div>
-  <div class="panel p-finance" id="p-finance">
-   <div class="ptext">
-    <span class="pillchip" style="background:var(--teal)"><i class="ti ti-coin-euro"></i> Finance</span>
-    <h3>Know your runway, daily</h3>
-    <p class="pdesc">Budget scenarios, live cash flow and invoicing, with probability-scored forecasting that tells you exactly when money gets tight.</p>
-    <div class="mod"><div class="mod-ic"><i class="ti ti-wallet"></i></div><div><b>Budget</b><span>Scenario planning, transaction ledger and Confidence Forecasting: runway projections with 100/60/30% probability scoring</span></div></div>
-    <div class="mod"><div class="mod-ic"><i class="ti ti-chart-line"></i></div><div><b>Cash flow</b><span>Burn rate (daily, weekly, monthly), income by category, top clients by revenue</span></div></div>
-    <div class="mod"><div class="mod-ic"><i class="ti ti-file-invoice"></i></div><div><b>Invoicing</b><span>Invoices, quotes, credit notes and aging reports. Convert quotes in one click</span></div></div>
-    <div class="mod"><div class="mod-ic"><i class="ti ti-building-bank"></i></div><div><b>Banking</b><span>Live bank feeds via Ponto Connect, synced straight into your ledger</span></div></div>
-   </div>
-   <div class="pframe glass spot">
-    <div class="bar3"><span></span><span></span><span></span></div>
-    <img src="shot-finance-light.jpg" alt="Simplify cashflow management screenshot showing income, expenses and burn rate" width="1280" height="800" loading="lazy" data-shot="finance">
-    <div class="float-stat glass">$44,497<small>monthly net burn</small></div>
-   </div>
-  </div>
+  </div><div class="modmarquee" aria-label="Simplify modules"><div class="modtrack"><div class="modcard" style="--cc:var(--primary)"><div class="modcard-h"><span class="modcard-ic"><i class="ti ti-layout-kanban"></i></span><b>Projects &amp; Tasks</b></div><h3>Every project, ticket and doc</h3><div class="modcard-shot"><img data-shot="projects" src="shot-projects-light.jpg" alt="Projects &amp; Tasks preview" loading="lazy"></div></div><div class="modcard" style="--cc:var(--teal)"><div class="modcard-h"><span class="modcard-ic"><i class="ti ti-coin-euro"></i></span><b>Finance</b></div><h3>Know your runway, daily</h3><div class="modcard-shot"><img data-shot="finance" src="shot-finance-light.jpg" alt="Finance preview" loading="lazy"></div></div><div class="modcard" style="--cc:var(--coral)"><div class="modcard-h"><span class="modcard-ic"><i class="ti ti-trending-up"></i></span><b>Sales &amp; CRM</b></div><h3>A pipeline that briefs you back</h3><div class="modcard-shot"><img data-shot="sales" src="shot-sales-light.jpg" alt="Sales &amp; CRM preview" loading="lazy"></div></div><div class="modcard" style="--cc:var(--amber)"><div class="modcard-h"><span class="modcard-ic"><i class="ti ti-users"></i></span><b>People &amp; HR</b></div><h3>From hire to high-performer</h3><div class="modcard-shot"><img data-shot="people" src="shot-people-light.jpg" alt="People &amp; HR preview" loading="lazy"></div></div><div class="modcard" style="--cc:var(--teal)"><div class="modcard-h"><span class="modcard-ic"><i class="ti ti-file-invoice"></i></span><b>Invoicing</b></div><h3>Invoices, quotes &amp; credit notes</h3><div class="modcard-shot"><img data-shot="invoicing" src="shot-invoicing-light.jpg" alt="Invoicing preview" loading="lazy"></div></div><div class="modcard" style="--cc:var(--amber)"><div class="modcard-h"><span class="modcard-ic"><i class="ti ti-user-search"></i></span><b>Recruiting</b></div><h3>A full ATS with a career page</h3><div class="modcard-shot"><img data-shot="recruiting" src="shot-recruiting-light.jpg" alt="Recruiting preview" loading="lazy"></div></div><div class="modcard" style="--cc:var(--primary)"><div class="modcard-h"><span class="modcard-ic"><i class="ti ti-files"></i></span><b>Documents</b></div><h3>Templates, versions, one hub</h3><div class="modcard-shot"><img data-shot="documents" src="shot-documents-light.jpg" alt="Documents preview" loading="lazy"></div></div><div class="modcard" style="--cc:var(--coral)"><div class="modcard-h"><span class="modcard-ic"><i class="ti ti-calendar-time"></i></span><b>Meetings</b></div><h3>Scheduling plus auto-summaries</h3><div class="modcard-shot"><img data-shot="meetings" src="shot-meetings-light.jpg" alt="Meetings preview" loading="lazy"></div></div><div class="modcard" style="--cc:var(--primary)"><div class="modcard-h"><span class="modcard-ic"><i class="ti ti-sparkles"></i></span><b>AI Briefings</b></div><h3>Your workspace works ahead of you</h3><div class="modcard-shot"><img data-shot="ai" src="shot-ai-light.jpg" alt="AI Briefings preview" loading="lazy"></div></div><div class="modcard" style="--cc:var(--primary)"><div class="modcard-h"><span class="modcard-ic"><i class="ti ti-layout-kanban"></i></span><b>Projects &amp; Tasks</b></div><h3>Every project, ticket and doc</h3><div class="modcard-shot"><img data-shot="projects" src="shot-projects-light.jpg" alt="Projects &amp; Tasks preview" loading="lazy"></div></div><div class="modcard" style="--cc:var(--teal)"><div class="modcard-h"><span class="modcard-ic"><i class="ti ti-coin-euro"></i></span><b>Finance</b></div><h3>Know your runway, daily</h3><div class="modcard-shot"><img data-shot="finance" src="shot-finance-light.jpg" alt="Finance preview" loading="lazy"></div></div><div class="modcard" style="--cc:var(--coral)"><div class="modcard-h"><span class="modcard-ic"><i class="ti ti-trending-up"></i></span><b>Sales &amp; CRM</b></div><h3>A pipeline that briefs you back</h3><div class="modcard-shot"><img data-shot="sales" src="shot-sales-light.jpg" alt="Sales &amp; CRM preview" loading="lazy"></div></div><div class="modcard" style="--cc:var(--amber)"><div class="modcard-h"><span class="modcard-ic"><i class="ti ti-users"></i></span><b>People &amp; HR</b></div><h3>From hire to high-performer</h3><div class="modcard-shot"><img data-shot="people" src="shot-people-light.jpg" alt="People &amp; HR preview" loading="lazy"></div></div><div class="modcard" style="--cc:var(--teal)"><div class="modcard-h"><span class="modcard-ic"><i class="ti ti-file-invoice"></i></span><b>Invoicing</b></div><h3>Invoices, quotes &amp; credit notes</h3><div class="modcard-shot"><img data-shot="invoicing" src="shot-invoicing-light.jpg" alt="Invoicing preview" loading="lazy"></div></div><div class="modcard" style="--cc:var(--amber)"><div class="modcard-h"><span class="modcard-ic"><i class="ti ti-user-search"></i></span><b>Recruiting</b></div><h3>A full ATS with a career page</h3><div class="modcard-shot"><img data-shot="recruiting" src="shot-recruiting-light.jpg" alt="Recruiting preview" loading="lazy"></div></div><div class="modcard" style="--cc:var(--primary)"><div class="modcard-h"><span class="modcard-ic"><i class="ti ti-files"></i></span><b>Documents</b></div><h3>Templates, versions, one hub</h3><div class="modcard-shot"><img data-shot="documents" src="shot-documents-light.jpg" alt="Documents preview" loading="lazy"></div></div><div class="modcard" style="--cc:var(--coral)"><div class="modcard-h"><span class="modcard-ic"><i class="ti ti-calendar-time"></i></span><b>Meetings</b></div><h3>Scheduling plus auto-summaries</h3><div class="modcard-shot"><img data-shot="meetings" src="shot-meetings-light.jpg" alt="Meetings preview" loading="lazy"></div></div><div class="modcard" style="--cc:var(--primary)"><div class="modcard-h"><span class="modcard-ic"><i class="ti ti-sparkles"></i></span><b>AI Briefings</b></div><h3>Your workspace works ahead of you</h3><div class="modcard-shot"><img data-shot="ai" src="shot-ai-light.jpg" alt="AI Briefings preview" loading="lazy"></div></div></div></div>
+  
 
-  <div class="panel p-people alt" id="p-people">
-   <div class="ptext">
-    <span class="pillchip" style="background:var(--amber)"><i class="ti ti-users"></i> People</span>
-    <h3>From hire to high-performer</h3>
-    <p class="pdesc">A full HR stack: team planning, payroll, performance cycles and a built-in ATS with a public career page.</p>
-    <div class="mod"><div class="mod-ic"><i class="ti ti-calendar"></i></div><div><b>Team planning</b><span>Full-year planning grid: holidays, sick days, deadlines, locked weeks</span></div></div>
-    <div class="mod"><div class="mod-ic"><i class="ti ti-coin-euro"></i></div><div><b>Salary</b><span>Payroll overview, salary records, net advantages and deal-linked commissions</span></div></div>
-    <div class="mod"><div class="mod-ic"><i class="ti ti-target"></i></div><div><b>Performance</b><span>Company, team and individual goals, check-ins, structured review cycles</span></div></div>
-    <div class="mod"><div class="mod-ic"><i class="ti ti-user-search"></i></div><div><b>Recruitr</b><span>Full ATS: clients, jobs, candidates, pipeline, plus a public career page</span></div></div>
-   </div>
-   <div class="pframe glass spot">
-    <div class="bar3"><span></span><span></span><span></span></div>
-    <img src="shot-people-light.jpg" alt="Simplify performance management screenshot with goals and review cycles" width="1280" height="800" loading="lazy" data-shot="people">
-    <div class="float-stat glass">$94,400<small>monthly payroll · 28 people</small></div>
-   </div>
-  </div>
+  
 
-  <div class="panel p-sales" id="p-sales">
-   <div class="ptext">
-    <span class="pillchip" style="background:var(--coral)"><i class="ti ti-trending-up"></i> Sales</span>
-    <h3>A pipeline that briefs you back</h3>
-    <p class="pdesc">CRM with an AI daily plan, weighted pipeline, follow-up tasks and shareable, trackable sales packs.</p>
-    <div class="mod"><div class="mod-ic"><i class="ti ti-address-book"></i></div><div><b>CRM</b><span>Contacts, companies, kanban deal pipeline, stale-deal alerts, follow-ups</span></div></div>
-    <div class="mod"><div class="mod-ic"><i class="ti ti-briefcase"></i></div><div><b>Sales packs</b><span>Branded, trackable pitch decks. No more email attachments</span></div></div>
-    <div class="mod"><div class="mod-ic"><i class="ti ti-tags"></i></div><div><b>Products</b><span>Catalog with pricing and volume discount tiers, linked to deals</span></div></div>
-    <div class="mod"><div class="mod-ic"><i class="ti ti-sparkles"></i></div><div><b>AI briefing</b><span>"Today's plan" surfaces your highest-impact deals and calls each morning</span></div></div>
-   </div>
-   <div class="pframe glass spot">
-    <div class="bar3"><span></span><span></span><span></span></div>
-    <img src="shot-sales-light.jpg" alt="Simplify document workspace powering shareable sales packs" width="1280" height="800" loading="lazy" data-shot="sales">
-    <div class="float-stat glass">$1,032,925<small>pipeline · 58.8% conversion</small></div>
-   </div>
-  </div>
+  
 
-  <div class="panel p-workspace alt" id="p-workspace">
-   <div class="ptext">
-    <span class="pillchip" style="background:var(--primary)"><i class="ti ti-layout-kanban"></i> Workspace</span>
-    <h3>Every project, ticket and doc</h3>
-    <p class="pdesc">Project health at a glance, a unified ticket board, document hub and a built-in Calendly-style scheduler.</p>
-    <div class="mod"><div class="mod-ic"><i class="ti ti-layout-grid"></i></div><div><b>Projects</b><span>Health tracking (on track / at risk / off track), budgets, team allocation</span></div></div>
-    <div class="mod"><div class="mod-ic"><i class="ti ti-ticket"></i></div><div><b>Ticketing</b><span>Global board across all projects: priority, status pipeline, assignees</span></div></div>
-    <div class="mod"><div class="mod-ic"><i class="ti ti-files"></i></div><div><b>Documents</b><span>Templates, version control, internal and confidential visibility levels</span></div></div>
-    <div class="mod"><div class="mod-ic"><i class="ti ti-calendar-time"></i></div><div><b>Meetings</b><span>Auto-summarized notes plus a public booking page with calendar sync</span></div></div>
-   </div>
-   <div class="pframe glass spot">
-    <div class="bar3"><span></span><span></span><span></span></div>
-    <img src="shot-projects-light.jpg" alt="Simplify ticketing screenshot with unified ticket board across projects" width="1280" height="800" loading="lazy" data-shot="projects">
-    <div class="float-stat glass">53 projects<small>52 open tickets · one board</small></div>
-   </div>
-  </div>
+  
  </div>
 </section>
 
@@ -897,23 +872,10 @@ html.dark .fchip .fci{color:#16140f}
  </div>
 </div>
 <div class="consol" id="consol">
- <p class="consol-lead">From a dozen logins to one</p>
+ <p class="consol-lead">From a dozen logins to one</p><div class="toolmarq"><div class="toolmarq-track"><img src="https://simplifysuite.io/images/jira.webp" alt="Jira" loading="lazy"><img src="https://simplifysuite.io/images/calendly.png" alt="Calendly" loading="lazy"><img src="https://simplifysuite.io/images/expensify.webp" alt="Expensify" loading="lazy"><img src="https://simplifysuite.io/images/notion.webp" alt="Notion" loading="lazy"><img src="https://simplifysuite.io/images/monday.webp" alt="Monday" loading="lazy"><img src="https://simplifysuite.io/images/zoho.webp" alt="Zoho" loading="lazy"><img src="https://simplifysuite.io/images/showpad.webp" alt="Showpad" loading="lazy"><img src="https://simplifysuite.io/images/staffcircle.svg" alt="Staffcircle" loading="lazy"><img src="https://simplifysuite.io/images/trello.webp" alt="Trello" loading="lazy"><img src="https://simplifysuite.io/images/plane.svg" alt="Plane" loading="lazy"><img src="https://simplifysuite.io/images/productive.svg" alt="Productive" loading="lazy"><img src="https://simplifysuite.io/images/obsidian.webp" alt="Obsidian" loading="lazy"><img src="https://simplifysuite.io/images/jira.webp" alt="Jira" loading="lazy"><img src="https://simplifysuite.io/images/calendly.png" alt="Calendly" loading="lazy"><img src="https://simplifysuite.io/images/expensify.webp" alt="Expensify" loading="lazy"><img src="https://simplifysuite.io/images/notion.webp" alt="Notion" loading="lazy"><img src="https://simplifysuite.io/images/monday.webp" alt="Monday" loading="lazy"><img src="https://simplifysuite.io/images/zoho.webp" alt="Zoho" loading="lazy"><img src="https://simplifysuite.io/images/showpad.webp" alt="Showpad" loading="lazy"><img src="https://simplifysuite.io/images/staffcircle.svg" alt="Staffcircle" loading="lazy"><img src="https://simplifysuite.io/images/trello.webp" alt="Trello" loading="lazy"><img src="https://simplifysuite.io/images/plane.svg" alt="Plane" loading="lazy"><img src="https://simplifysuite.io/images/productive.svg" alt="Productive" loading="lazy"><img src="https://simplifysuite.io/images/obsidian.webp" alt="Obsidian" loading="lazy"></div><div class="toolmarq-tab glass"><img src="https://simplifysuite.io/images/simplify-square-512.png" alt="Simplify"><b>one login replaces all of these</b></div></div>
  <div class="consol-flow">
   <div class="cnode cnode-a">
-   <div class="cn-logos">
-    <img src="https://simplifysuite.io/images/jira.webp" alt="Jira" width="42" height="42" loading="lazy">
-    <img src="https://simplifysuite.io/images/calendly.png" alt="Calendly" width="42" height="42" loading="lazy">
-    <img src="https://simplifysuite.io/images/expensify.webp" alt="Expensify" width="42" height="42" loading="lazy">
-    <img src="https://simplifysuite.io/images/notion.webp" alt="Notion" width="42" height="42" loading="lazy">
-    <img src="https://simplifysuite.io/images/monday.webp" alt="Monday" width="42" height="42" loading="lazy">
-    <img src="https://simplifysuite.io/images/zoho.webp" alt="Zoho" width="42" height="42" loading="lazy">
-    <img src="https://simplifysuite.io/images/showpad.webp" alt="Showpad" width="42" height="42" loading="lazy">
-    <img src="https://simplifysuite.io/images/staffcircle.svg" alt="Staffcircle" width="42" height="42" loading="lazy">
-    <img src="https://simplifysuite.io/images/trello.webp" alt="Trello" width="42" height="42" loading="lazy">
-    <img src="https://simplifysuite.io/images/plane.svg" alt="Plane" width="42" height="42" loading="lazy">
-    <img src="https://simplifysuite.io/images/productive.svg" alt="Productive" width="42" height="42" loading="lazy">
-    <img src="https://simplifysuite.io/images/obsidian.webp" alt="Obsidian" width="42" height="42" loading="lazy">
-   </div>
+   
    <div class="cn-badge"><span class="cn-num" data-c="12">12</span><span class="cn-cap">tools, tabs &amp; bills</span></div>
   </div>
   <div class="cflow cflow-1"><i class="ti ti-chevrons-right"></i></div>
