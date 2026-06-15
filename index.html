@@ -681,9 +681,20 @@ html.dark .explore-card{background:rgba(255,255,255,.06)!important;border:1px so
 html.dark .ex-tile{background:rgba(255,255,255,.07)!important;border:1px solid rgba(255,255,255,.14)!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.1)!important}
 .ex-tile:hover,.ex-tile.on{border-color:var(--primary)!important;background:rgba(124,108,241,.2)!important;box-shadow:0 10px 24px -12px var(--primary)!important}
 html.dark .ex-tile:hover,html.dark .ex-tile.on{background:rgba(167,149,227,.22)!important;border-color:var(--primary)!important}
+
+/* ===== editorial identity layer ===== */
+h1,h2,.hero h1,.section-head h2,.consol-lead{font-family:'Fraunces','Plus Jakarta Sans',Georgia,serif;letter-spacing:-.02em;font-weight:600}
+.consol-lead{font-style:italic;text-transform:none;letter-spacing:0;font-size:18px}
+.hero h1 .hl{font-family:'Fraunces',serif!important;font-style:italic;font-weight:600;background:none!important;-webkit-text-fill-color:var(--primary)!important;color:var(--primary)!important}
+.kicker,.consol-lead.kk{font-family:'Plus Jakarta Sans',sans-serif}
+/* film grain */
+body::after{content:"";position:fixed;inset:0;z-index:90;pointer-events:none;opacity:.05;mix-blend-mode:soft-light;background-image:url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%27200%27 height=%27200%27%3E%3Cfilter id=%27n%27%3E%3CfeTurbulence type=%27fractalNoise%27 baseFrequency=%270.85%27 numOctaves=%273%27 stitchTiles=%27stitch%27/%3E%3C/filter%3E%3Crect width=%27100%25%27 height=%27100%25%27 filter=%27url(%23n)%27/%3E%3C/svg%3E")}
+html.dark body::after{opacity:.08;mix-blend-mode:screen}
+main{will-change:transform}
+@media (prefers-reduced-motion:reduce){main{will-change:auto!important}}
 </style>
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin="">
-</head>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500;1,9..144,600&amp;display=swap"></head>
 <body>
 <div id="progress" aria-hidden="true"></div>
 <canvas id="meshbg" aria-hidden="true"></canvas>
@@ -1514,5 +1525,13 @@ if (!reduceMotion) {
   if(el.classList.contains("fline")) tl.to(el,{scaleY:1,duration:0.25,ease:"none"}, i*0.11);
   else tl.to(el,{opacity:1,y:0,duration:0.45,ease:"power3.out"}, i*0.11);
  });
+})();
+</script><script>
+(function(){
+ if(matchMedia("(prefers-reduced-motion: reduce)").matches)return;
+ var m=document.querySelector("main"); if(!m)return;
+ var last=window.pageYOffset,vel=0,running=false;
+ function loop(){var cur=window.pageYOffset;var dv=cur-last;last=cur;vel+=(dv-vel)*0.25;var sk=Math.max(-1.5,Math.min(1.5,vel*0.05));m.style.transform=Math.abs(sk)<0.02?"":"skewY("+sk.toFixed(2)+"deg)";if(Math.abs(vel)<0.04&&Math.abs(dv)<0.5){running=false;m.style.transform="";return;}requestAnimationFrame(loop);}
+ addEventListener("scroll",function(){last=window.pageYOffset;if(!running){running=true;requestAnimationFrame(loop);}},{passive:true});
 })();
 </script></body></html>
