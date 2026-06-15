@@ -665,6 +665,14 @@ html.dark .logo-row img{background:none!important;filter:grayscale(1) invert(1) 
 .fchip{justify-content:flex-start}
 .fchip .fthumb{margin-left:auto;width:108px;height:62px;border-radius:9px;object-fit:cover;object-position:top left;border:1px solid var(--border);flex:none;background:var(--wg-bg)}
 @media(max-width:600px){.fchip .fthumb{display:none}}
+
+/* explore: uniform glassmorphic card + tiles */
+.explore-card{background:rgba(255,255,255,.42)!important;border:1px solid rgba(255,255,255,.55)!important;backdrop-filter:blur(26px) saturate(1.4)!important;-webkit-backdrop-filter:blur(26px) saturate(1.4)!important}
+html.dark .explore-card{background:rgba(20,19,18,.44)!important;border:1px solid rgba(255,255,255,.12)!important}
+.ex-tile{background:rgba(255,255,255,.32)!important;border:1px solid rgba(255,255,255,.5)!important;backdrop-filter:blur(9px)!important;-webkit-backdrop-filter:blur(9px)!important}
+html.dark .ex-tile{background:rgba(255,255,255,.06)!important;border:1px solid rgba(255,255,255,.13)!important}
+.ex-tile:hover,.ex-tile.on{border-color:var(--primary)!important;background:rgba(124,108,241,.16)!important;box-shadow:0 10px 22px -12px var(--primary)}
+html.dark .ex-tile:hover,html.dark .ex-tile.on{background:rgba(167,149,227,.18)!important;border-color:var(--primary)!important}
 </style>
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin="">
 </head>
