@@ -692,9 +692,30 @@ body::after{content:"";position:fixed;inset:0;z-index:90;pointer-events:none;opa
 html.dark body::after{opacity:.08;mix-blend-mode:screen}
 main{will-change:transform}
 @media (prefers-reduced-motion:reduce){main{will-change:auto!important}}
+
+/* ===== polish: brand font + Space Mono accent + depth ===== */
+h1,h2,.hero h1,.section-head h2{font-family:'Plus Jakarta Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif!important;font-weight:800!important;letter-spacing:-.022em!important;font-style:normal!important}
+.hero h1 .hl{font-family:inherit!important;font-style:normal!important;background:none!important;-webkit-text-fill-color:var(--primary)!important;color:var(--primary)!important}
+.kicker,.eyebrow,.ex-url,.shot-url,.fmid,.consol-lead,.wg .lab,.cn-cap,.fnote,.bill-per,.copy{font-family:'Space Mono','SFMono-Regular',ui-monospace,monospace!important}
+.consol-lead{font-style:normal!important;font-weight:700!important;text-transform:uppercase!important;letter-spacing:.12em!important;font-size:12.5px!important}
+.kicker,.fmid{letter-spacing:.14em}
+.eyebrow{letter-spacing:.01em;font-size:12px}
+/* text depth */
+.hero h1{text-shadow:0 2px 30px rgba(40,39,34,.1)}
+html.dark .hero h1{text-shadow:0 2px 60px rgba(124,108,241,.3),0 1px 3px rgba(0,0,0,.55)}
+html.dark .section-head h2{text-shadow:0 2px 46px rgba(124,108,241,.18)}
+html.dark .cn-num,html.dark .bill-amt,html.dark .stat .n{text-shadow:0 0 50px rgba(124,108,241,.32)}
+/* elevation depth (dark) */
+html.dark .glass,html.dark .modcard,html.dark .bcell,html.dark .plan,html.dark .fnode,html.dark .fchip,html.dark .quote,html.dark .explore-stage{box-shadow:0 32px 74px -30px rgba(0,0,0,.82),inset 0 1px 0 rgba(255,255,255,.07)!important}
+/* hero glow */
+.hero::before{content:"";position:absolute;inset:-5% 0 0 0;z-index:0;pointer-events:none;background:radial-gradient(50% 55% at 32% 38%,rgba(124,108,241,.12),transparent 72%)}
+/* CTA sheen */
+.btn-primary{position:relative;overflow:hidden}
+.btn-primary::after{content:"";position:absolute;top:0;left:-130%;width:55%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.4),transparent);transform:skewX(-18deg);transition:left .65s ease;pointer-events:none}
+.btn-primary:hover::after{left:150%}
 </style>
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin="">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500;1,9..144,600&amp;display=swap"></head>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500;1,9..144,600&amp;display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&amp;display=swap"></head>
 <body>
 <div id="progress" aria-hidden="true"></div>
 <canvas id="meshbg" aria-hidden="true"></canvas>
@@ -724,7 +745,7 @@ main{will-change:transform}
 <section class="hero" id="heroSec">
  <div class="wrap hero-grid">
   <div class="hero-left">
-  <span class="eyebrow"><i class="ti ti-sparkles"></i> New: AI daily briefings for sales &amp; projects</span>
+  <span class="eyebrow"><i class="ti ti-users"></i> Built for teams of 1-25, not enterprise bloat</span>
   <h1>One platform to run your <span class="hl">entire business</span></h1>
 <svg class="hsketch" viewBox="0 0 300 18" aria-hidden="true"><path d="M4 12 C58 4 104 16 156 9 C208 2 250 15 296 8" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path></svg>
   <p class="sub">Finance, people, sales and projects, together in one calm workspace. Simplify replaces 5-10 SaaS subscriptions for teams of 1-25, and costs up to 80% less.</p>
@@ -1308,7 +1329,7 @@ if (!reduceMotion) {
  var U=function(n){return gl.getUniformLocation(pr,n);};
  var uRes=U("u_res"),uT=U("u_time"),uM=U("u_mouse"),uS=U("u_scroll"),uB=U("u_base"),uG=U("u_glow"),uA=U("u_amp");
  var PAL={light:{base:[0.965,0.957,0.941],glow:[0.84,0.78,0.97],amp:0.45},
- dark:{base:[0.0,0.0,0.0],glow:[0.34,0.20,0.66],amp:0.85}};
+ dark:{base:[0.025,0.02,0.04],glow:[0.42,0.25,0.74],amp:0.98}};
  var pal=PAL.dark;
  function setPal(){pal=document.documentElement.classList.contains("dark")?PAL.dark:PAL.light;}
  setPal();new MutationObserver(setPal).observe(document.documentElement,{attributes:true,attributeFilter:["class"]});
