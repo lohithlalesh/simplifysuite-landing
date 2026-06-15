@@ -713,6 +713,28 @@ html.dark .glass,html.dark .modcard,html.dark .bcell,html.dark .plan,html.dark .
 .btn-primary{position:relative;overflow:hidden}
 .btn-primary::after{content:"";position:absolute;top:0;left:-130%;width:55%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.4),transparent);transform:skewX(-18deg);transition:left .65s ease;pointer-events:none}
 .btn-primary:hover::after{left:150%}
+
+/* ===== Confidence Forecasting viz ===== */
+.cfsec .cf-grid{display:grid;grid-template-columns:minmax(0,400px) minmax(0,1fr);gap:50px;align-items:center}
+@media(max-width:900px){.cfsec .cf-grid{grid-template-columns:1fr;gap:30px}}
+.cf-viz{border-radius:var(--r-lg);padding:20px 22px 14px}
+#cfChart{width:100%;height:auto;display:block;overflow:visible}
+.cf-band{stroke:none}
+.cf-line{stroke:var(--teal);stroke-width:2.5;stroke-linejoin:round;stroke-linecap:round;filter:drop-shadow(0 1px 6px rgba(46,160,143,.45))}
+html.dark .cf-line{stroke:#6fe0cd;filter:drop-shadow(0 0 8px rgba(111,224,205,.55))}
+.cf-zero{stroke:var(--border);stroke-width:1;stroke-dasharray:4 4}
+.cf-xlab,.cf-ylab{font-family:'Space Mono',monospace;font-size:11px;fill:var(--muted)}
+.cf-marker{stroke:var(--coral);stroke-width:1.4;stroke-dasharray:3 3;opacity:.85}
+.cf-mtext{font-family:'Space Mono',monospace;font-size:10.5px;fill:var(--coral);font-weight:700}
+.cf-mdot{fill:var(--coral);filter:drop-shadow(0 0 5px rgba(224,71,61,.6))}
+#cfGrid line{stroke:var(--border);opacity:.28}
+.cf-legend{list-style:none;display:flex;flex-direction:column;gap:11px;margin-top:24px;font-size:14.5px;color:var(--ink-soft)}
+.cf-legend li{display:flex;align-items:center;gap:11px}
+.cf-legend b{font-family:'Space Mono',monospace;font-weight:700;min-width:42px}
+.cf-dot{width:15px;height:15px;border-radius:4px;flex:none}
+.cf-dot.d100{background:rgba(46,160,143,.55)}
+.cf-dot.d60{background:rgba(122,104,192,.55)}
+.cf-dot.d30{background:rgba(224,71,61,.4)}
 </style>
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin="">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500;1,9..144,600&amp;display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&amp;display=swap"></head>
@@ -802,6 +824,39 @@ html.dark .glass,html.dark .modcard,html.dark .bcell,html.dark .plan,html.dark .
   
 
   
+ </div>
+</section><section class="section cfsec" id="forecast">
+ <div class="wrap cf-grid">
+  <div class="cf-copy reveal">
+   <p class="kicker">Confidence Forecasting</p>
+   <h2>Know exactly when money gets tight</h2>
+   <p>Every runway projection is scored by probability. Watch the near-certain path, the likely range, and the downside fan out month by month, so you plan against reality instead of one optimistic line.</p>
+   <ul class="cf-legend">
+    <li><span class="cf-dot d100"></span><b>100%</b> committed cash</li>
+    <li><span class="cf-dot d60"></span><b>60%</b> likely range</li>
+    <li><span class="cf-dot d30"></span><b>30%</b> downside scenario</li>
+   </ul>
+  </div>
+  <div class="cf-viz glass">
+   <svg id="cfChart" viewBox="0 0 600 340" role="img" aria-label="Confidence Forecasting: probability-scored cash runway projection over 12 months">
+    <defs>
+     <linearGradient id="cfg30" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e0473d" stop-opacity="0.18"></stop><stop offset="1" stop-color="#e0473d" stop-opacity="0.03"></stop></linearGradient>
+     <linearGradient id="cfg60" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7a68c0" stop-opacity="0.26"></stop><stop offset="1" stop-color="#7a68c0" stop-opacity="0.06"></stop></linearGradient>
+     <linearGradient id="cfg100" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2ea08f" stop-opacity="0.34"></stop><stop offset="1" stop-color="#2ea08f" stop-opacity="0.1"></stop></linearGradient>
+     <clipPath id="cfClip"><rect id="cfClipR" x="0" y="0" width="600" height="340"></rect></clipPath>
+    </defs>
+    <g id="cfGrid"></g>
+    <g clip-path="url(#cfClip)">
+     <path id="cfBand30" class="cf-band" fill="url(#cfg30)"></path>
+     <path id="cfBand60" class="cf-band" fill="url(#cfg60)"></path>
+     <path id="cfBand100" class="cf-band" fill="url(#cfg100)"></path>
+     <line id="cfZero" class="cf-zero"></line>
+     <path id="cfLine" class="cf-line" fill="none"></path>
+    </g>
+    <g id="cfAxis"></g>
+    <g id="cfRunway"></g>
+   </svg>
+  </div>
  </div>
 </section>
 
@@ -1554,5 +1609,38 @@ if (!reduceMotion) {
  var last=window.pageYOffset,vel=0,running=false;
  function loop(){var cur=window.pageYOffset;var dv=cur-last;last=cur;vel+=(dv-vel)*0.25;var sk=Math.max(-1.5,Math.min(1.5,vel*0.05));m.style.transform=Math.abs(sk)<0.02?"":"skewY("+sk.toFixed(2)+"deg)";if(Math.abs(vel)<0.04&&Math.abs(dv)<0.5){running=false;m.style.transform="";return;}requestAnimationFrame(loop);}
  addEventListener("scroll",function(){last=window.pageYOffset;if(!running){running=true;requestAnimationFrame(loop);}},{passive:true});
+})();
+</script><script>
+(function(){
+ var svg=document.getElementById("cfChart"); if(!svg)return;
+ var NS="http://www.w3.org/2000/svg";
+ var x0=58,x1=556,top=46,zeroY=250,months=12,cross=9.5;
+ function X(m){return x0+(m/months)*(x1-x0);}
+ function expY(m){var f=1-m/cross;if(f<-0.30)f=-0.30;return zeroY-f*(zeroY-top);}
+ function band(m,c){return c*Math.pow(m/months,1.06);}
+ function pts(fn){var a=[];for(var m=0;m<=months;m+=0.5){a.push([X(m),fn(m)]);}return a;}
+ function poly(u,d){var s="M"+u[0][0].toFixed(1)+" "+u[0][1].toFixed(1);for(var i=1;i<u.length;i++)s+="L"+u[i][0].toFixed(1)+" "+u[i][1].toFixed(1);for(var j=d.length-1;j>=0;j--)s+="L"+d[j][0].toFixed(1)+" "+d[j][1].toFixed(1);return s+"Z";}
+ function line(a){var s="M"+a[0][0].toFixed(1)+" "+a[0][1].toFixed(1);for(var i=1;i<a.length;i++)s+="L"+a[i][0].toFixed(1)+" "+a[i][1].toFixed(1);return s;}
+ document.getElementById("cfBand30").setAttribute("d",poly(pts(function(m){return expY(m)-band(m,170);}),pts(function(m){return expY(m)+band(m,150);})));
+ document.getElementById("cfBand60").setAttribute("d",poly(pts(function(m){return expY(m)-band(m,96);}),pts(function(m){return expY(m)+band(m,88);})));
+ document.getElementById("cfBand100").setAttribute("d",poly(pts(function(m){return expY(m)-band(m,34);}),pts(function(m){return expY(m)+band(m,32);})));
+ document.getElementById("cfLine").setAttribute("d",line(pts(expY)));
+ var z=document.getElementById("cfZero");z.setAttribute("x1",x0);z.setAttribute("x2",x1);z.setAttribute("y1",zeroY);z.setAttribute("y2",zeroY);
+ var grid=document.getElementById("cfGrid");[top+30,top+90,top+150].forEach(function(yy){var l=document.createElementNS(NS,"line");l.setAttribute("x1",x0);l.setAttribute("x2",x1);l.setAttribute("y1",yy);l.setAttribute("y2",yy);grid.appendChild(l);});
+ var axis=document.getElementById("cfAxis");
+ [["Now",0],["+3mo",3],["+6mo",6],["+9mo",9],["+12mo",12]].forEach(function(l){var t=document.createElementNS(NS,"text");t.setAttribute("x",X(l[1]));t.setAttribute("y",zeroY+22);t.setAttribute("class","cf-xlab");t.setAttribute("text-anchor","middle");t.textContent=l[0];axis.appendChild(t);});
+ [["~$420K",top+5],["$0",zeroY+4]].forEach(function(l){var t=document.createElementNS(NS,"text");t.setAttribute("x",x0-9);t.setAttribute("y",l[1]);t.setAttribute("class","cf-ylab");t.setAttribute("text-anchor","end");t.textContent=l[0];axis.appendChild(t);});
+ var rg=document.getElementById("cfRunway"),rx=X(cross);
+ var ml=document.createElementNS(NS,"line");ml.setAttribute("x1",rx);ml.setAttribute("x2",rx);ml.setAttribute("y1",top-4);ml.setAttribute("y2",zeroY);ml.setAttribute("class","cf-marker");rg.appendChild(ml);
+ var mt=document.createElementNS(NS,"text");mt.setAttribute("x",rx);mt.setAttribute("y",top-10);mt.setAttribute("class","cf-mtext");mt.setAttribute("text-anchor","middle");mt.textContent="Runway ends \u00b7 ~285 days";rg.appendChild(mt);
+ var dot=document.createElementNS(NS,"circle");dot.setAttribute("cx",rx);dot.setAttribute("cy",zeroY);dot.setAttribute("r",4.5);dot.setAttribute("class","cf-mdot");rg.appendChild(dot);
+ var reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
+ var clipR=document.getElementById("cfClipR");
+ if(reduce||!window.gsap||!window.ScrollTrigger){if(clipR)clipR.setAttribute("width",600);return;}
+ var gsap=window.gsap,ST=window.ScrollTrigger;gsap.registerPlugin(ST);
+ gsap.set(clipR,{attr:{width:0}});
+ var ln=document.getElementById("cfLine");var len=ln.getTotalLength?ln.getTotalLength():700;ln.style.strokeDasharray=len;ln.style.strokeDashoffset=len;
+ var tl=gsap.timeline({scrollTrigger:{trigger:svg,start:"top 80%"}});
+ tl.to(clipR,{attr:{width:600},duration:1.4,ease:"power2.out"},0).to(ln,{strokeDashoffset:0,duration:1.4,ease:"power2.out"},0).from("#cfRunway",{opacity:0,duration:0.5,ease:"power2.out"},1.0);
 })();
 </script></body></html>
