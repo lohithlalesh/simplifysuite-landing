@@ -735,6 +735,23 @@ html.dark .cf-line{stroke:#6fe0cd;filter:drop-shadow(0 0 8px rgba(111,224,205,.5
 .cf-dot.d100{background:rgba(46,160,143,.55)}
 .cf-dot.d60{background:rgba(122,104,192,.55)}
 .cf-dot.d30{background:rgba(224,71,61,.4)}
+
+/* ===== capabilities breakdown ===== */
+.capsec .cap-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+@media(max-width:1000px){.capsec .cap-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.capsec .cap-grid{grid-template-columns:1fr}}
+.cap-pillar{border-radius:var(--r-lg);padding:24px 22px;background:linear-gradient(180deg,color-mix(in oklch,var(--pc) 9%,var(--card)),var(--card));border:1px solid var(--border);position:relative;overflow:hidden;box-shadow:var(--glass-shadow)}
+.cap-pillar::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:var(--pc)}
+.cap-h{display:flex;align-items:center;gap:11px;margin-bottom:18px}
+.cap-ic{width:38px;height:38px;border-radius:11px;background:var(--pc);color:#fff;display:flex;align-items:center;justify-content:center;font-size:19px;flex:none}
+html.dark .cap-ic{color:#16140f}
+.cap-h h3{font-size:18px;font-weight:800}
+.cap-mod{padding:13px 0;border-top:1px solid var(--border)}
+.cap-mod:first-of-type{border-top:none;padding-top:0}
+.cap-mod>b{font-size:14.5px;display:block;margin-bottom:8px;font-weight:700}
+.cap-tags{display:flex;flex-wrap:wrap;gap:5px}
+.cap-tags span{font-family:'Space Mono','SFMono-Regular',monospace;font-size:10.5px;color:var(--muted);background:var(--wg-bg);border:1px solid var(--wg-border);border-radius:6px;padding:3px 8px;line-height:1.35}
+.cap-tags span:hover{color:var(--pc);border-color:var(--pc)}
 </style>
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin="">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500;1,9..144,600&amp;display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&amp;display=swap"></head>
@@ -857,6 +874,15 @@ html.dark .cf-line{stroke:#6fe0cd;filter:drop-shadow(0 0 8px rgba(111,224,205,.5
     <g id="cfRunway"></g>
    </svg>
   </div>
+ </div>
+</section><section class="section capsec" id="capabilities">
+ <div class="wrap">
+  <div class="section-head reveal" style="text-align:center;max-width:720px;margin:0 auto 54px">
+   <p class="kicker">What’s inside</p>
+   <h2>The whole operation, not a highlight reel</h2>
+   <p>Forecasting is one piece. This is everything that actually ships under one login: finance, people, sales and workspace, all sharing a single database.</p>
+  </div>
+  <div class="cap-grid"><div class="cap-pillar reveal" style="--pc:var(--teal)"><div class="cap-h"><span class="cap-ic"><i class="ti ti-coin-euro"></i></span><h3>Finance</h3></div><div class="cap-mod"><b>Budget</b><div class="cap-tags"><span>Scenario planning</span><span>Confidence Forecasting</span><span>Transaction ledger</span></div></div><div class="cap-mod"><b>Cash flow</b><div class="cap-tags"><span>Burn rate</span><span>Income by category</span><span>Top clients</span></div></div><div class="cap-mod"><b>Invoicing</b><div class="cap-tags"><span>Invoices</span><span>Quotes</span><span>Credit notes</span><span>Aging reports</span></div></div><div class="cap-mod"><b>Banking</b><div class="cap-tags"><span>Live feeds via Ponto open banking</span></div></div></div><div class="cap-pillar reveal" style="--pc:var(--amber)"><div class="cap-h"><span class="cap-ic"><i class="ti ti-users"></i></span><h3>People</h3></div><div class="cap-mod"><b>Team planning</b><div class="cap-tags"><span>Year grid</span><span>Holidays &amp; sick days</span><span>Locked weeks</span></div></div><div class="cap-mod"><b>Salary</b><div class="cap-tags"><span>Payroll records</span><span>Net advantages</span><span>Deal-linked commissions</span></div></div><div class="cap-mod"><b>Performance</b><div class="cap-tags"><span>Goals (company/team/individual)</span><span>Check-ins</span><span>Review cycles</span></div></div><div class="cap-mod"><b>Recruitr · ATS</b><div class="cap-tags"><span>Jobs</span><span>Candidates</span><span>Pipeline</span><span>Public career page</span></div></div></div><div class="cap-pillar reveal" style="--pc:var(--coral)"><div class="cap-h"><span class="cap-ic"><i class="ti ti-trending-up"></i></span><h3>Sales</h3></div><div class="cap-mod"><b>CRM</b><div class="cap-tags"><span>Contacts &amp; companies</span><span>Kanban pipeline</span><span>Weighted forecast</span><span>Stale-deal alerts</span></div></div><div class="cap-mod"><b>Products</b><div class="cap-tags"><span>Catalog</span><span>Volume-discount tiers</span></div></div><div class="cap-mod"><b>Sales packs</b><div class="cap-tags"><span>Branded</span><span>Trackable decks</span></div></div><div class="cap-mod"><b>AI briefing</b><div class="cap-tags"><span>"Today’s plan" surfaces top deals</span></div></div></div><div class="cap-pillar reveal" style="--pc:var(--primary)"><div class="cap-h"><span class="cap-ic"><i class="ti ti-layout-kanban"></i></span><h3>Workspace</h3></div><div class="cap-mod"><b>Projects</b><div class="cap-tags"><span>Health tracking</span><span>Budgets</span><span>Team allocation</span></div></div><div class="cap-mod"><b>Ticketing</b><div class="cap-tags"><span>Global board</span><span>Priority &amp; status</span><span>Assignees</span></div></div><div class="cap-mod"><b>Documents</b><div class="cap-tags"><span>Templates</span><span>Version control</span><span>Visibility levels</span></div></div><div class="cap-mod"><b>Meetings</b><div class="cap-tags"><span>Auto-summarized notes</span><span>Public scheduler</span><span>Calendar sync</span></div></div></div></div>
  </div>
 </section>
 
