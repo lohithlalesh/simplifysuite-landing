@@ -752,6 +752,18 @@ html.dark .cap-ic{color:#16140f}
 .cap-tags{display:flex;flex-wrap:wrap;gap:5px}
 .cap-tags span{font-family:'Space Mono','SFMono-Regular',monospace;font-size:10.5px;color:var(--muted);background:var(--wg-bg);border:1px solid var(--wg-border);border-radius:6px;padding:3px 8px;line-height:1.35}
 .cap-tags span:hover{color:var(--pc);border-color:var(--pc)}
+
+/* ===== Groq-style statement panel ===== */
+.groqp{width:100vw;margin-left:calc(50% - 50vw);background:#161413;color:#f2efe9;padding:clamp(76px,11vw,150px) 0;position:relative;overflow:hidden}
+html.dark .groqp{background:#0b0a09;border-top:1px solid rgba(255,255,255,.08);border-bottom:1px solid rgba(255,255,255,.08)}
+.groqp .wrap{position:relative;z-index:1}
+.gp-k{color:#a795e3!important}
+.gp-head{font-family:'Plus Jakarta Sans',sans-serif;font-size:clamp(2.3rem,6vw,5rem);font-weight:800;line-height:1.03;letter-spacing:-.03em;color:#fff;max-width:16ch;margin:20px 0 0;text-shadow:0 2px 50px rgba(124,108,241,.25)}
+.gp-head .ac{color:#a795e3}
+.gp-row{display:flex;justify-content:space-between;align-items:flex-end;gap:44px;flex-wrap:wrap;margin-top:44px}
+.gp-sub{color:#b8b4ab;font-size:18px;max-width:540px;line-height:1.6;margin:0}
+.gp-cta{flex:none}
+@media(max-width:760px){.gp-row{flex-direction:column;align-items:flex-start;gap:26px}.gp-sub{font-size:16px}}
 </style>
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin="">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500;1,9..144,600&amp;display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&amp;display=swap"></head>
@@ -842,7 +854,7 @@ html.dark .cap-ic{color:#16140f}
 
   
  </div>
-</section>
+</section><section class="groqp" id="difference"><div class="wrap"><p class="kicker gp-k">One platform, not ten</p><h2 class="gp-head">Most software does one job.<br>Simplify runs the <span class="ac">whole business</span>.</h2><div class="gp-row"><p class="gp-sub">Finance, people, sales and projects on one shared database. No integrations to wire, no logins to juggle, no Friday copy-paste. One subscription does what a stack of five to ten used to.</p><a class="btn btn-primary btn-lg gp-cta" href="https://demo.simplifysuite.io" rel="noopener">Explore the live demo <i class="ti ti-arrow-right"></i></a></div></div></section>
 
 <section class="section smart" id="intelligence">
  <div class="wrap">
